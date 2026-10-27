@@ -1,0 +1,498 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* product_si5_gtin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-27 14:23+0000\n"
+"PO-Revision-Date: 2026-10-27 14:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"A web protection challenge blocked the request. This does not prove the "
+"token is invalid."
+msgstr ""
+"Um desafio de proteção web bloqueou a solicitação. Isso não comprova token "
+"inválido."
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.res_config_settings_view_form_si5
+msgid ""
+"API token created at global.si5.com.br/conta for the current company. The "
+"SI5_TOKEN_COMPANY_<id> server environment variable, when set, takes "
+"precedence."
+msgstr ""
+"Token da API criado em global.si5.com.br/conta para a empresa atual. A "
+"variável de ambiente SI5_TOKEN_COMPANY_<id> do servidor, quando definida, "
+"tem prioridade."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields.selection,name:product_si5_gtin.selection__si5_lookup__state__applied
+msgid "Applied"
+msgstr "Aplicada"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Apply selected fields"
+msgstr "Aplicar campos selecionados"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"Ask an administrator to set the SI5 Global token for this company in "
+"Settings."
+msgstr ""
+"Peça a um administrador para cadastrar o token do SI5 Global desta empresa "
+"em Configurações."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Brand: %(brand)s"
+msgstr "Marca: %(brand)s"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__cest_code
+msgid "CEST"
+msgstr "CEST"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Category: %(category)s"
+msgstr "Categoria: %(category)s"
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_res_company
+msgid "Companies"
+msgstr "Empresas"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__company_id
+msgid "Company"
+msgstr "Empresa"
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_res_config_settings
+msgid "Config Settings"
+msgstr "Configurações"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Confirm download and preview image"
+msgstr "Confirmar download e visualizar imagem"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__confirm_shared
+msgid "Confirm impact on the shared template and companies"
+msgstr "Confirmar impacto no template compartilhado e nas empresas"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Confirm the impact on other variants and companies before applying."
+msgstr "Confirme o impacto nas outras variantes e empresas antes de aplicar."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__create_uid
+msgid "Created by"
+msgstr "Criado por"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__create_date
+msgid "Created on"
+msgstr "Criado em"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_description
+msgid "Current description"
+msgstr "Descrição atual"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_name
+msgid "Current name"
+msgstr "Nome atual"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Current product"
+msgstr "Cadastro atual"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_weight
+msgid "Current weight"
+msgstr "Peso atual"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__display_name
+msgid "Display Name"
+msgstr "Nome exibido"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Download and review the image before applying it."
+msgstr "Baixe e revise a imagem antes de aplicá-la."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Enter 8, 12, 13 or 14 ASCII digits, preserving leading zeros."
+msgstr "Informe 8, 12, 13 ou 14 dígitos ASCII, preservando os zeros iniciais."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__fiscal_reference
+msgid "Fiscal reference"
+msgstr "Referência fiscal"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__code
+msgid "GTIN"
+msgstr "GTIN"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.res_config_settings_view_form_si5
+msgid "GTIN lookup token"
+msgstr "Token de consulta de GTIN"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__id
+msgid "ID"
+msgstr "ID"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__image_url
+msgid "Image source"
+msgstr "Fonte da imagem"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__write_uid
+msgid "Last Updated by"
+msgstr "Última atualização por"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__write_date
+msgid "Last Updated on"
+msgstr "Última atualização em"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.product_form_si5
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.template_form_si5
+msgid "Look up GTIN with SI5"
+msgstr "Consultar GTIN na SI5"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__ncm_code
+msgid "NCM"
+msgstr "NCM"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "NCM: %(ncm)s | CEST: %(cest)s. Reference only; ask your accountant."
+msgstr ""
+"NCM: %(ncm)s | CEST: %(cest)s. Apenas referência; consulte seu contador."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "No weight was suggested for this product."
+msgstr "Nenhum peso foi sugerido para este produto."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Only SI5 HTTPS images without redirects are allowed."
+msgstr "Somente imagens HTTPS da SI5 sem redirecionamento são permitidas."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Open the specific variant to look up its GTIN."
+msgstr "Abra a variante específica para consultar seu GTIN."
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.res_config_settings_view_form_si5
+msgid "Paste the token"
+msgstr "Cole o token"
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_product_template
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__product_id
+msgid "Product"
+msgstr "Produto"
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_product_product
+msgid "Product Variant"
+msgstr "Variante do produto"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Product not found. Catalogue coverage is not guaranteed."
+msgstr "Produto não encontrado. A cobertura do catálogo não é garantida."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_description
+msgid "Replace description"
+msgstr "Substituir descrição"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_image
+msgid "Replace image"
+msgstr "Substituir imagem da variante"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_name
+msgid "Replace name"
+msgstr "Substituir nome"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_weight
+msgid "Replace weight"
+msgstr "Substituir peso"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Review SI5 suggestions"
+msgstr "Revisar sugestões SI5"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.res_config_settings_view_form_si5
+msgid "SI5 Global"
+msgstr "SI5 Global"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_res_company__si5_token
+#: model:ir.model.fields,field_description:product_si5_gtin.field_res_config_settings__si5_token
+msgid "SI5 Global API token"
+msgstr "Token da API SI5 Global"
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_si5_lookup
+msgid "SI5 product review"
+msgstr "Revisão de produto SI5"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Select the product company first."
+msgstr "Selecione primeiro a empresa do produto."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__source_fingerprint
+msgid "Source Fingerprint"
+msgstr "Identificação da origem"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Source: SI5 Global, GTIN %(code)s"
+msgstr "Fonte: SI5 Global, GTIN %(code)s"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid ""
+"Source: SI5 Global. No fields are selected by default. Coverage is not "
+"guaranteed; fiscal references require accountant review."
+msgstr ""
+"Fonte: SI5 Global. Nenhum campo vem selecionado. A cobertura não é "
+"garantida; referências fiscais exigem revisão do contador."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__state
+msgid "State"
+msgstr "Estado"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_description
+msgid "Suggested description"
+msgstr "Descrição sugerida"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_name
+msgid "Suggested name"
+msgstr "Nome sugerido"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_weight
+msgid "Suggested weight"
+msgstr "Peso sugerido"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Suggestions to review"
+msgstr "Sugestões para revisar"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The GTIN changed. Run the lookup again."
+msgstr "O GTIN mudou. Consulte novamente."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The GTIN check digit is invalid."
+msgstr "O dígito verificador do GTIN é inválido."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The SI5 lookup could not be completed."
+msgstr "Não foi possível concluir a consulta SI5."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The SI5 request limit was reached. Wait before trying again."
+msgstr ""
+"O limite de consultas SI5 foi atingido. Aguarde antes de tentar novamente."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The SI5 token is invalid or expired."
+msgstr "O token SI5 é inválido ou expirou."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The image content, dimensions or format is not allowed."
+msgstr "O conteúdo, as dimensões ou o formato da imagem não são permitidos."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The image format or size is not allowed."
+msgstr "O formato ou o tamanho da imagem não é permitido."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The lookup target and source cannot be changed."
+msgstr "O alvo e a fonte da consulta não podem ser alterados."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The name cannot be empty."
+msgstr "O nome não pode ficar vazio."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The network destination is not allowed."
+msgstr "O destino de rede não é permitido."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The network request failed or timed out. Try again later."
+msgstr ""
+"A solicitação de rede falhou ou excedeu o tempo limite. Tente mais tarde."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"The product changed after this lookup. Review it again before replacing "
+"data."
+msgstr ""
+"O produto mudou após esta consulta. Revise novamente antes de substituir "
+"dados."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The provider denied access."
+msgstr "O provedor negou o acesso."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The response contract or returned GTIN is invalid."
+msgstr "O contrato da resposta ou o GTIN retornado é inválido."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The response exceeds the allowed size."
+msgstr "A resposta excede o tamanho permitido."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"The response is not JSON; a web protection page may have been returned."
+msgstr "A resposta não é JSON; pode ser uma página de proteção web."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"The service is unavailable or returned an unexpected status. Try again "
+"later."
+msgstr ""
+"O serviço está indisponível ou retornou um estado inesperado. Tente mais "
+"tarde."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "This is a restricted circulation code, not a universal GTIN lookup."
+msgstr ""
+"Este código é de circulação restrita e não permite consulta universal por "
+"GTIN."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "This review belongs to another user or company."
+msgstr "Esta prévia pertence a outro usuário ou empresa."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "This review has already been applied."
+msgstr "Esta prévia já foi aplicada."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields.selection,name:product_si5_gtin.selection__si5_lookup__state__draft
+msgid "To review"
+msgstr "Para revisar"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Use the product lookup button to create a review."
+msgstr "Use o botão de consulta do produto para criar uma prévia."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__preview_image
+msgid "Validated image preview"
+msgstr "Prévia de imagem validada"
+
+#. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__weight_uom_name
+msgid "Weight unit of measure label"
+msgstr ""

@@ -1,0 +1,4 @@
+.test-admin-password
+__pycache__/
+*.pyc
+.ruff_cache/

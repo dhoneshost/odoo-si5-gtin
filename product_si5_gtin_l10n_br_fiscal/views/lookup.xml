@@ -1,0 +1,19 @@
+<odoo>
+    <record id="lookup_form_fiscal" model="ir.ui.view">
+        <field name="name">si5.lookup.form.l10n_br_fiscal</field>
+        <field name="model">si5.lookup</field>
+        <field name="inherit_id" ref="product_si5_gtin.lookup_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='current_description']" position="after">
+                <field name="current_ncm_id"/>
+                <field name="current_cest_id"/>
+            </xpath>
+            <xpath expr="//field[@name='fiscal_reference']" position="after">
+                <field name="proposed_ncm_id"/>
+                <field name="apply_ncm" invisible="not proposed_ncm_id"/>
+                <field name="proposed_cest_id"/>
+                <field name="apply_cest" invisible="not proposed_cest_id"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

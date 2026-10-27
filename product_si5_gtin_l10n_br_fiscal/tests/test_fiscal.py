@@ -1,0 +1,104 @@
+# Copyright 2026 SI5
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
+from unittest.mock import patch
+
+from odoo.exceptions import UserError
+from odoo.tests import TransactionCase, tagged
+
+
+@tagged("post_install", "-at_install")
+class TestFiscalBridge(TransactionCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.ncm = cls.env["l10n_br_fiscal.ncm"].create(
+            {"code": "9999.99.01", "name": "SI5 fixture NCM"}
+        )
+        cls.other_ncm = cls.env["l10n_br_fiscal.ncm"].create(
+            {"code": "9999.99.02", "name": "SI5 fixture other NCM"}
+        )
+        segment = cls.env["l10n_br_fiscal.cest"]._fields["segment"].selection[0][0]
+        cls.cest = cls.env["l10n_br_fiscal.cest"].create(
+            {
+                "segment": segment,
+                "code": "99.999.01",
+                "item": "999",
+                "name": "SI5 fixture CEST",
+                "ncms": "99999901",
+            }
+        )
+        cls.cest.ncm_ids = cls.ncm
+        cls.product = cls.env["product.product"].create(
+            {"name": "Existing", "barcode": "7891000325858"}
+        )
+
+    def setUp(self):
+        super().setUp()
+        guard = patch(
+            "odoo.addons.product_si5_gtin.service.PinnedHTTPS",
+            side_effect=AssertionError("Offline test attempted real transport"),
+        )
+        guard.start()
+        self.addCleanup(guard.stop)
+
+    def preview(self, ncm="99999901", cest="9999901"):
+        data = {
+            "produto": "Proposed",
+            "marca": "",
+            "imagem_url": "",
+            "ncm": ncm,
+            "cest_codigo": cest,
+            "ncm_descricao": "",
+            "categoria": "",
+            "peso": None,
+        }
+        with patch("odoo.addons.product_si5_gtin.models.lookup", return_value=data):
+            action = self.product.action_si5_lookup()
+        return self.env["si5.lookup"].browse(action["res_id"])
+
+    def test_nothing_applied_by_default(self):
+        before = self.product.ncm_id
+        wizard = self.preview()
+        self.assertEqual(wizard.proposed_ncm_id, self.ncm)
+        wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, before)
+
+    def test_apply_ncm_and_cest_requires_confirmation(self):
+        wizard = self.preview()
+        wizard.write({"apply_ncm": True, "apply_cest": True})
+        self.assertEqual(wizard.proposed_cest_id, self.cest)
+        with self.assertRaises(UserError):
+            wizard.action_apply()
+        wizard.confirm_shared = True
+        wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, self.ncm)
+        self.assertEqual(self.product.cest_id, self.cest)
+
+    def test_unknown_ncm_is_not_guessed(self):
+        wizard = self.preview(ncm="99999999", cest="")
+        self.assertFalse(wizard.proposed_ncm_id)
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        with self.assertRaises(UserError):
+            wizard.action_apply()
+
+    def test_cest_must_match_target_ncm(self):
+        self.product.product_tmpl_id.ncm_id = self.other_ncm
+        wizard = self.preview()
+        # Keeping the current (other) NCM: the CEST does not belong to it.
+        self.assertFalse(wizard.proposed_cest_id)
+        wizard.apply_ncm = True
+        self.assertEqual(wizard.proposed_cest_id, self.cest)
+
+    def test_cest_without_ncm_link_is_offered(self):
+        unlinked = self.cest.copy({"code": "99.999.02", "ncms": False})
+        unlinked.ncm_ids = False
+        wizard = self.preview(cest="9999902")
+        wizard.apply_ncm = True
+        self.assertEqual(wizard.proposed_cest_id, unlinked)
+
+    def test_plain_ncm_preferred_over_ex_variant(self):
+        self.env["l10n_br_fiscal.ncm"].create(
+            {"code": "9999.99.01", "exception": "01", "name": "SI5 fixture Ex"}
+        )
+        wizard = self.preview()
+        self.assertEqual(wizard.proposed_ncm_id, self.ncm)

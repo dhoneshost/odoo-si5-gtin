@@ -1,0 +1,82 @@
+<odoo>
+    <record id="template_form_si5" model="ir.ui.view">
+        <field name="name">product.template.si5</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_si5_lookup" type="object" string="Look up GTIN with SI5" groups="product.group_product_manager" invisible="not barcode or product_variant_count != 1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="product_form_si5" model="ir.ui.view">
+        <field name="name">product.product.si5</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_si5_lookup" type="object" string="Look up GTIN with SI5" groups="product.group_product_manager" invisible="not barcode"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="lookup_form" model="ir.ui.view">
+        <field name="name">si5.lookup.form</field>
+        <field name="model">si5.lookup</field>
+        <field name="arch" type="xml">
+            <form string="Review SI5 suggestions">
+                <div class="alert alert-info" role="alert">Source: SI5 Global. No fields are selected by default. Coverage is not guaranteed; fiscal references require accountant review.</div>
+                <group>
+                    <group string="Current product">
+                        <field name="product_id"/>
+                        <field name="company_id" groups="base.group_multi_company"/>
+                        <field name="code"/>
+                        <field name="state"/>
+                        <field name="current_name"/>
+                        <field name="current_description"/>
+                        <label for="current_weight"/>
+                        <div class="o_row">
+                            <field name="current_weight"/>
+                            <field name="weight_uom_name"/>
+                        </div>
+                    </group>
+                    <group string="Suggestions to review" name="si5_suggestions">
+                        <field name="proposed_name"/>
+                        <field name="apply_name"/>
+                        <field name="proposed_description"/>
+                        <field name="apply_description"/>
+                        <label for="proposed_weight"/>
+                        <div class="o_row">
+                            <field name="proposed_weight"/>
+                            <field name="weight_uom_name"/>
+                        </div>
+                        <field name="apply_weight" invisible="not proposed_weight"/>
+                        <field name="image_url"/>
+                        <button name="action_preview_image" type="object" string="Confirm download and preview image" invisible="state != 'draft' or not image_url"/>
+                        <field name="preview_image" widget="image" invisible="not preview_image"/>
+                        <field name="apply_image" invisible="not preview_image"/>
+                        <field name="fiscal_reference"/>
+                        <field name="confirm_shared"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_apply" type="object" string="Apply selected fields" class="btn-primary" invisible="state != 'draft'"/>
+                    <button special="cancel" string="Cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    <record id="res_config_settings_view_form_si5" model="ir.ui.view">
+        <field name="name">res.config.settings.si5</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="SI5 Global" name="si5_global_setting_container" groups="base.group_system">
+                    <setting id="si5_global_token" string="GTIN lookup token" help="API token created at global.si5.com.br/conta for the current company. The SI5_TOKEN_COMPANY_&lt;id&gt; server environment variable, when set, takes precedence.">
+                        <field name="si5_token" password="True" placeholder="Paste the token"/>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>

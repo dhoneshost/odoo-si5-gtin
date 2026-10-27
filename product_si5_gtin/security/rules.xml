@@ -1,0 +1,7 @@
+<odoo>
+    <record id="lookup_company_rule" model="ir.rule">
+        <field name="name">SI5 review: current company and creator</field>
+        <field name="model_id" ref="model_si5_lookup"/>
+        <field name="domain_force">[("company_id", "=", company_id), ("create_uid", "=", user.id)]</field>
+    </record>
+</odoo>
