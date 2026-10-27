@@ -10,6 +10,8 @@
     "category": "Sales/Sales",
     "website": "https://github.com/dhoneshost/odoo-si5-gtin",
     "maintainers": ["dhoneshost"],
+    "support": "dev@si5.com.br",
+    "images": ["static/description/banner.png"],
     "depends": ["product"],
     "external_dependencies": {"python": ["Pillow"]},
     "data": ["security/ir.model.access.csv", "security/rules.xml", "views/lookup.xml"],

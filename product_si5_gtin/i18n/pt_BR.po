@@ -257,7 +257,7 @@ msgstr "Substituir descrição"
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_image
 msgid "Replace image"
-msgstr "Substituir imagem da variante"
+msgstr "Substituir imagem"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_name

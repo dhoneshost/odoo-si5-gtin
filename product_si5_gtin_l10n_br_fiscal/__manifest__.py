@@ -10,6 +10,8 @@
     "category": "Localization/Brazil",
     "website": "https://github.com/dhoneshost/odoo-si5-gtin",
     "maintainers": ["dhoneshost"],
+    "support": "dev@si5.com.br",
+    "images": ["static/description/banner.png"],
     "depends": ["product_si5_gtin", "l10n_br_fiscal"],
     "data": ["views/lookup.xml"],
     "installable": True,

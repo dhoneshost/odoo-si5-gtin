@@ -1,0 +1,130 @@
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#081128;">Product GTIN lookup with SI5 Global</h2>
+            <h3 class="oe_slogan">Type the barcode, review the suggestions, apply only what you want</h3>
+            <p class="oe_mt32" style="font-size:17px;line-height:1.6;text-align:center;max-width:820px;margin:0 auto;">
+                Fill product name, picture, gross weight and Brazilian fiscal codes (NCM / CEST) from
+                <a href="https://global.si5.com.br" target="_blank">SI5 Global</a>, a catalogue with
+                <b>millions of GTINs</b> from Brazilian retail. Nothing is written without your review.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#00767b;">1. One click on the product</h2>
+            <p style="text-align:center;font-size:16px;">Open a product with a barcode and click <b>Look up GTIN with SI5</b>.</p>
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="screenshot_1_product.png" style="max-width:100%;" alt="Product form with the SI5 button"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#00767b;">2. Review current × suggested</h2>
+            <p style="text-align:center;font-size:16px;max-width:820px;margin:0 auto;">
+                Current data on the left, suggestions on the right. <b>Every checkbox starts unchecked.</b>
+                The picture is downloaded only when you confirm, validated (format, size, dimensions) and
+                shown before being applied.
+            </p>
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="screenshot_2_review.png" style="max-width:100%;" alt="Review wizard"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#00767b;">3. NCM and CEST for the Brazilian localization</h2>
+            <p style="text-align:center;font-size:16px;max-width:820px;margin:0 auto;">
+                With the companion module <b>product_si5_gtin_l10n_br_fiscal</b> (installed automatically with
+                the OCA <code>l10n_br_fiscal</code>), the review also offers the NCM and CEST records from the
+                fiscal tables, only on exact matches and only CEST linked to the NCM.
+                Fiscal classification stays the responsibility of your company and accountant.
+            </p>
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="screenshot_3_review_fiscal.png" style="max-width:100%;" alt="NCM and CEST suggestions"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#00767b;">4. Done</h2>
+            <div class="oe_demo oe_picture oe_screenshot">
+                <img src="screenshot_4_result.png" style="max-width:100%;" alt="Product filled"/>
+            </div>
+            <div class="oe_demo oe_picture oe_screenshot oe_mt32">
+                <img src="screenshot_5_fiscal_tab.png" style="max-width:100%;" alt="Fiscal tab with NCM and CEST"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container" style="background:#f5f7fc;">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span6">
+            <h3 style="color:#081128;">Features</h3>
+            <ul style="font-size:15px;line-height:1.8;">
+                <li>Name, internal note (brand, category, source), gross weight and picture</li>
+                <li>WebP pictures converted for Odoo thumbnails and PDF reports</li>
+                <li>Single-variant products get the template picture; multi-variant keeps it on the variant</li>
+                <li>Extra confirmation for data shared by variants / companies</li>
+                <li>UPC-A (12 digits), EAN-8/13, GTIN-14; restricted prefixes rejected</li>
+                <li>One token per company in <i>Settings › SI5 Global</i> (admins only)</li>
+                <li>Hardened network client: fixed hosts, TLS, size limits, no secrets in errors or logs</li>
+                <li>English and Brazilian Portuguese</li>
+            </ul>
+        </div>
+        <div class="oe_span6">
+            <h3 style="color:#081128;">Configuration</h3>
+            <ol style="font-size:15px;line-height:1.8;">
+                <li>Create a free account at <a href="https://global.si5.com.br" target="_blank">global.si5.com.br</a></li>
+                <li>Create an API token in <a href="https://global.si5.com.br/conta" target="_blank">Minha conta</a></li>
+                <li>Paste it in <i>Settings › General Settings › SI5 Global</i></li>
+            </ol>
+            <p style="font-size:15px;">
+                The free plan has a daily quota. Paid plans add more queries and the full fiscal sheet
+                (IBPT, IPI, PIS/COFINS, ST, IBS/CBS by state):
+                <a href="https://global.si5.com.br/precos/api" target="_blank">see plans</a>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12">
+            <h2 class="oe_slogan" style="color:#081128;">Em português</h2>
+            <p style="font-size:16px;line-height:1.7;max-width:860px;margin:0 auto;">
+                Consulte o produto pelo código de barras no <b>SI5 Global</b> e preencha nome, foto, peso,
+                NCM e CEST com <b>revisão antes de gravar</b>: nada vem marcado, você escolhe campo a campo.
+                Com a localização brasileira da OCA (<code>l10n_br_fiscal</code>), o módulo complementar oferece
+                o NCM e o CEST das tabelas fiscais. Crie sua conta grátis em
+                <a href="https://global.si5.com.br" target="_blank">global.si5.com.br</a>, gere o token em
+                <i>Minha conta</i> e cole em <i>Configurações › SI5 Global</i>.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="oe_container">
+    <div class="oe_row oe_spaced">
+        <div class="oe_span12" style="text-align:center;">
+            <p style="font-size:15px;">
+                Source code (AGPL-3): <a href="https://github.com/dhoneshost/odoo-si5-gtin" target="_blank">github.com/dhoneshost/odoo-si5-gtin</a>
+                · Support: <a href="mailto:dev@si5.com.br">dev@si5.com.br</a>
+            </p>
+        </div>
+    </div>
+</section>
