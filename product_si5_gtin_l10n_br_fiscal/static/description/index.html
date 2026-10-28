@@ -1,11 +1,11 @@
-<!-- Odoo Apps Store page: inline styles only (the store strips <style> blocks) -->
+<!-- Odoo Apps Store page: inline styles only (the store strips <style> blocks); no external links -->
 <div style="font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#1d1d1f;background:#ffffff;max-width:1140px;margin:0 auto;padding:8px;">
 
     <div style="background:linear-gradient(120deg,#081128 0%,#0b4f63 55%,#00767b 100%);border-radius:24px;padding:48px;color:#fff;">
         <div style="display:flex;flex-wrap:wrap;align-items:center;gap:40px;">
             <div style="flex:1 1 400px;min-width:280px;">
                 <img src="icon.png" alt="SI5" style="width:72px;height:72px;border-radius:18px;box-shadow:0 8px 24px rgba(0,0,0,.35);"/>
-                <h1 style="font-size:36px;line-height:1.12;font-weight:800;margin:20px 0 12px;letter-spacing:-.02em;color:#fff;">NCM and CEST from the barcode</h1>
+                <h1 style="font-size:36px;line-height:1.12;font-weight:800;margin:20px 0 12px;letter-spacing:-.02em;color:#fff;">NCM and CEST suggestions from the barcode</h1>
                 <p style="font-size:18px;line-height:1.55;margin:0;color:#d4f1f1;">
                     Companion of <b style="color:#fff;">Product SI5 GTIN lookup</b> for the OCA Brazilian fiscal engine
                     (<code style="color:#fff;">l10n_br_fiscal</code>). Installed automatically when both are present.
@@ -32,16 +32,21 @@
         </div>
     </div>
 
+    <div style="background:#f5f7fc;border-radius:20px;padding:28px;margin:0 0 24px;">
+        <h3 style="font-size:21px;margin:0 0 10px;color:#081128;">What it does and does not do</h3>
+        <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.85;color:#2d3748;">
+            <li>Fills only <b>NCM</b> and <b>CEST</b> on the product template, when you tick them.</li>
+            <li>Does not set fiscal type, ICMS origin, tax rates, tax definitions or any other fiscal configuration.</li>
+            <li>Sends nothing extra to SI5 Global: it uses the same lookup as <code>product_si5_gtin</code> (barcode and company token only).</li>
+        </ul>
+    </div>
+
     <div style="border:1px solid #e5eaf3;border-radius:20px;padding:28px;margin:0 0 24px;">
         <h3 style="font-size:21px;margin:0 0 10px;color:#081128;">🇧🇷 Em português</h3>
         <p style="margin:0;font-size:16px;line-height:1.7;color:#2d3748;">
             Sugere o NCM e o CEST das tabelas fiscais da localização brasileira da OCA, aplicados no produto só depois da
-            sua revisão. A classificação fiscal continua sendo responsabilidade da empresa e do contador.
+            sua revisão. Não altera tipo fiscal, origem, alíquotas nem outras configurações fiscais, que continuam sendo
+            responsabilidade da empresa e do contador.
         </p>
     </div>
-
-    <p style="text-align:center;font-size:14.5px;color:#647087;margin:8px 0 24px;">
-        <a href="https://github.com/dhoneshost/odoo-si5-gtin" target="_blank" style="color:#00767b;">github.com/dhoneshost/odoo-si5-gtin</a>
-        &nbsp;·&nbsp; <a href="mailto:dev@si5.com.br" style="color:#00767b;">dev@si5.com.br</a>
-    </p>
 </div>

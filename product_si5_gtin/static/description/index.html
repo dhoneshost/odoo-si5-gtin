@@ -1,4 +1,4 @@
-<!-- Odoo Apps Store page: inline styles only (the store strips <style> blocks) -->
+<!-- Odoo Apps Store page: inline styles only (the store strips <style> blocks); no external links -->
 <div style="font-family:-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;color:#1d1d1f;background:#ffffff;max-width:1140px;margin:0 auto;padding:8px;">
 
     <!-- HERO -->
@@ -9,15 +9,11 @@
                 <h1 style="font-size:40px;line-height:1.1;font-weight:800;margin:22px 0 14px;letter-spacing:-.02em;color:#fff;">
                     Fill products from the barcode
                 </h1>
-                <p style="font-size:19px;line-height:1.55;margin:0 0 26px;color:#dbe4ff;">
-                    Name, picture, weight, <b style="color:#fff;">NCM and CEST</b> from
-                    <b style="color:#fff;">SI5 Global</b>, a catalogue with millions of GTINs from Brazilian retail.
-                    Every suggestion is <b style="color:#fff;">reviewed before it is saved</b>.
+                <p style="font-size:19px;line-height:1.55;margin:0;color:#dbe4ff;">
+                    Look up a GTIN on <b style="color:#fff;">SI5 Global</b>, a catalogue of Brazilian retail products,
+                    and get suggestions for name, picture and weight, plus <b style="color:#fff;">NCM / CEST references</b>.
+                    Nothing is written until <b style="color:#fff;">you review and select each field</b>.
                 </p>
-                <div style="display:flex;flex-wrap:wrap;gap:12px;">
-                    <a href="https://global.si5.com.br" target="_blank" style="background:#fff;color:#081128;text-decoration:none;font-weight:700;padding:13px 24px;border-radius:999px;font-size:16px;">Create free account</a>
-                    <a href="https://global.si5.com.br/precos/api" target="_blank" style="background:rgba(255,255,255,.12);color:#fff;text-decoration:none;font-weight:600;padding:13px 24px;border-radius:999px;font-size:16px;border:1px solid rgba(255,255,255,.35);">API plans</a>
-                </div>
             </div>
             <div style="flex:1 1 420px;min-width:280px;text-align:center;">
                 <img src="screenshot_2_review.png" alt="Review wizard" style="max-width:100%;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.45);"/>
@@ -39,8 +35,8 @@
         </div>
         <div style="flex:1 1 300px;background:#fff;border:1px solid #e5eaf3;border-radius:20px;padding:26px 26px 22px;box-shadow:0 10px 30px -18px rgba(8,17,40,.25);">
             <div style="width:44px;height:44px;border-radius:12px;background:#fff1e0;color:#b45309;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;">3</div>
-            <h3 style="font-size:20px;margin:16px 0 8px;color:#081128;">Brazilian fiscal ready</h3>
-            <p style="margin:0;font-size:15.5px;line-height:1.6;color:#4a5568;">With OCA <code>l10n_br_fiscal</code>, the review also offers the matching <b>NCM and CEST</b> records.</p>
+            <h3 style="font-size:20px;margin:16px 0 8px;color:#081128;">NCM / CEST suggestions</h3>
+            <p style="margin:0;font-size:15.5px;line-height:1.6;color:#4a5568;">With OCA <code>l10n_br_fiscal</code>, the review can also suggest matching <b>NCM and CEST</b> records. Other fiscal settings stay with you and your accountant.</p>
         </div>
     </div>
 
@@ -73,56 +69,85 @@
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:36px;margin:56px 0;">
         <div style="flex:1 1 320px;min-width:260px;">
             <span style="display:inline-block;background:#fff1e0;color:#b45309;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:999px;">Step 3</span>
-            <h2 style="font-size:28px;line-height:1.2;margin:14px 0 10px;color:#081128;">Product ready to sell</h2>
-            <p style="font-size:16.5px;line-height:1.65;color:#4a5568;margin:0;">Name, picture, weight, internal note with brand and category, NCM and CEST, in seconds. WebP pictures are converted so Odoo thumbnails and PDF reports work.</p>
+            <h2 style="font-size:28px;line-height:1.2;margin:14px 0 10px;color:#081128;">Only the selected fields are saved</h2>
+            <p style="font-size:16.5px;line-height:1.65;color:#4a5568;margin:0;">The fields you ticked are written to the product; everything else stays as it was. WebP pictures are converted so Odoo thumbnails and PDF reports work. Prices, taxes, fiscal type and other settings are not changed.</p>
         </div>
         <div style="flex:2 1 520px;min-width:280px;">
-            <img src="screenshot_4_result.png" alt="Product filled" style="width:100%;border-radius:14px;border:1px solid #e5eaf3;box-shadow:0 18px 40px -20px rgba(8,17,40,.35);"/>
-            <img src="screenshot_5_fiscal_tab.png" alt="Fiscal tab with NCM and CEST" style="width:100%;border-radius:14px;border:1px solid #e5eaf3;box-shadow:0 18px 40px -20px rgba(8,17,40,.35);margin-top:18px;"/>
+            <img src="screenshot_4_result.png" alt="Product after applying the selected fields" style="width:100%;border-radius:14px;border:1px solid #e5eaf3;box-shadow:0 18px 40px -20px rgba(8,17,40,.35);"/>
+            <img src="screenshot_5_fiscal_tab.png" alt="Fiscal tab with the selected NCM and CEST" style="width:100%;border-radius:14px;border:1px solid #e5eaf3;box-shadow:0 18px 40px -20px rgba(8,17,40,.35);margin-top:18px;"/>
         </div>
     </div>
 
-    <!-- FEATURES + SETUP -->
+    <!-- WHAT THE MODULE FILLS x WHAT DEPENDS ON THE PLAN -->
     <div style="display:flex;flex-wrap:wrap;gap:20px;margin:24px 0;">
         <div style="flex:1 1 440px;background:#f5f7fc;border-radius:20px;padding:30px;">
-            <h3 style="font-size:22px;margin:0 0 14px;color:#081128;">Features</h3>
+            <h3 style="font-size:22px;margin:0 0 6px;color:#081128;">What this module fills</h3>
+            <p style="margin:0 0 12px;font-size:14.5px;color:#647087;">Always as a suggestion, only when the field is ticked.</p>
             <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.9;color:#2d3748;">
-                <li>Name, internal note (brand, category, source), gross weight, picture</li>
-                <li>NCM / CEST for <code>l10n_br_fiscal</code> (companion module)</li>
-                <li>Template picture for single-variant products; variant picture otherwise</li>
-                <li>Restricted-circulation prefixes rejected; check digit validated</li>
-                <li>One token per company, visible to administrators only</li>
-                <li>Hardened client: fixed hosts, TLS, size limits, no secrets in logs</li>
-                <li>English and Brazilian Portuguese</li>
+                <li>Product name</li>
+                <li>Internal note with brand, category and source</li>
+                <li>Gross weight (converted to the database weight unit)</li>
+                <li>Picture (template picture for single-variant products, variant picture otherwise)</li>
+                <li>NCM and CEST records, only with <code>l10n_br_fiscal</code> and the companion module</li>
             </ul>
+            <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#647087;">It does not set prices, taxes, fiscal type, ICMS origin, tax rates, stock or accounting data.</p>
         </div>
         <div style="flex:1 1 440px;background:#081128;color:#fff;border-radius:20px;padding:30px;">
-            <h3 style="font-size:22px;margin:0 0 14px;color:#fff;">Set up in 3 steps</h3>
-            <ol style="margin:0 0 18px;padding-left:22px;font-size:15.5px;line-height:1.9;color:#dbe4ff;">
-                <li>Create a free account at <a href="https://global.si5.com.br" target="_blank" style="color:#7fe3e6;">global.si5.com.br</a></li>
-                <li>Create an API token in <a href="https://global.si5.com.br/conta" target="_blank" style="color:#7fe3e6;">Minha conta</a></li>
-                <li>Paste it in <i>Settings › General Settings › SI5 Global</i></li>
-            </ol>
-            <p style="margin:0;font-size:15px;line-height:1.6;color:#b9c6ef;">Free plan with a daily quota. Paid plans add more queries and the full fiscal sheet (IBPT, IPI, PIS/COFINS, ST, IBS/CBS by state).</p>
-            <a href="https://global.si5.com.br/precos/api" target="_blank" style="display:inline-block;margin-top:18px;background:#1048ff;color:#fff;text-decoration:none;font-weight:700;padding:12px 22px;border-radius:999px;">See API plans</a>
+            <h3 style="font-size:22px;margin:0 0 6px;color:#fff;">SI5 Global account and plans</h3>
+            <p style="margin:0 0 12px;font-size:14.5px;color:#b9c6ef;">An SI5 Global API token is required (one per company).</p>
+            <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.9;color:#dbe4ff;">
+                <li>Free plan: daily lookup quota, enough to use every feature of this module</li>
+                <li>Paid plans: higher quota</li>
+                <li>Paid plans also include, in the SI5 API, a fiscal sheet (IBPT, IPI, PIS/COFINS, ST, IBS/CBS by state). <b style="color:#fff;">This module does not read or apply that data.</b></li>
+            </ul>
+            <p style="margin:14px 0 0;font-size:14.5px;line-height:1.6;color:#b9c6ef;">Account, token and plans are managed at global.si5.com.br.</p>
         </div>
+    </div>
+
+    <!-- DATA SENT -->
+    <div style="border:1px solid #e5eaf3;border-radius:20px;padding:30px;margin:24px 0;">
+        <h3 style="font-size:22px;margin:0 0 12px;color:#081128;">What is sent to the SI5 Global API</h3>
+        <div style="display:flex;flex-wrap:wrap;gap:24px;">
+            <div style="flex:1 1 440px;">
+                <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.85;color:#2d3748;">
+                    <li><b>Lookup:</b> one HTTPS request from the Odoo server with the <b>barcode</b> (GTIN) of the product, the <b>company token</b> and a User-Agent naming this module.</li>
+                    <li><b>Picture:</b> only after you click <i>Confirm download</i>, one HTTPS request to the SI5 picture server, without the token.</li>
+                    <li>Requests run only when a user clicks the button. Nothing runs in the background.</li>
+                </ul>
+            </div>
+            <div style="flex:1 1 440px;">
+                <ul style="margin:0;padding-left:20px;font-size:15.5px;line-height:1.85;color:#2d3748;">
+                    <li><b>Not sent:</b> product name, prices, stock, customers, partners, invoices, users or any other Odoo data.</li>
+                    <li>The token is stored on the company (administrators only) or in the server environment, and is never shown in the browser, exports or error messages.</li>
+                    <li>Like any API, SI5 Global receives the request itself (barcode, time and the Odoo server IP) to count the quota.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- SETUP -->
+    <div style="background:#f5f7fc;border-radius:20px;padding:30px;margin:24px 0;">
+        <h3 style="font-size:22px;margin:0 0 12px;color:#081128;">Set up</h3>
+        <ol style="margin:0;padding-left:22px;font-size:15.5px;line-height:1.9;color:#2d3748;">
+            <li>Create an SI5 Global account and an API token (in <i>Minha conta</i> at global.si5.com.br).</li>
+            <li>In Odoo: <i>Settings › General Settings › SI5 Global</i>, paste the token for the current company.</li>
+            <li>Optional: install <code>l10n_br_fiscal</code> to receive NCM / CEST suggestions.</li>
+        </ol>
     </div>
 
     <!-- PORTUGUES -->
-    <div style="border:1px solid #e5eaf3;border-radius:20px;padding:30px;margin:36px 0 24px;">
+    <div style="border:1px solid #e5eaf3;border-radius:20px;padding:30px;margin:24px 0;">
         <h3 style="font-size:22px;margin:0 0 10px;color:#081128;">🇧🇷 Em português</h3>
+        <p style="margin:0 0 10px;font-size:16px;line-height:1.7;color:#2d3748;">
+            Consulte o produto pelo código de barras no <b>SI5 Global</b> e receba sugestões de nome, foto e peso, além de
+            referências de <b>NCM e CEST</b>. Nada é gravado sem a sua revisão: você marca campo a campo. Com a localização
+            brasileira da OCA (<code>l10n_br_fiscal</code>), o módulo complementar sugere os registros de NCM e CEST das
+            tabelas fiscais. Demais configurações fiscais (tipo fiscal, origem, tributos) continuam com você e seu contador.
+        </p>
         <p style="margin:0;font-size:16px;line-height:1.7;color:#2d3748;">
-            Consulte o produto pelo código de barras no <b>SI5 Global</b> e preencha nome, foto, peso, <b>NCM e CEST</b>
-            com revisão antes de gravar: nada vem marcado, você escolhe campo a campo. Com a localização brasileira da OCA
-            (<code>l10n_br_fiscal</code>), o módulo complementar oferece o NCM e o CEST das tabelas fiscais.
-            Crie sua conta grátis em <a href="https://global.si5.com.br" target="_blank" style="color:#1048ff;">global.si5.com.br</a>,
-            gere o token em <i>Minha conta</i> e cole em <i>Configurações › SI5 Global</i>.
+            À API vão apenas o código de barras, o token da empresa e a identificação do módulo; a foto só é baixada depois
+            da sua confirmação. Nenhum outro dado do Odoo é enviado. Crie a conta e o token em global.si5.com.br
+            (<i>Minha conta</i>) e cole em <i>Configurações › SI5 Global</i>.
         </p>
     </div>
-
-    <!-- FOOTER -->
-    <p style="text-align:center;font-size:14.5px;color:#647087;margin:8px 0 24px;">
-        Open source (AGPL-3): <a href="https://github.com/dhoneshost/odoo-si5-gtin" target="_blank" style="color:#1048ff;">github.com/dhoneshost/odoo-si5-gtin</a>
-        &nbsp;·&nbsp; Support: <a href="mailto:dev@si5.com.br" style="color:#1048ff;">dev@si5.com.br</a>
-    </p>
 </div>
