@@ -153,6 +153,9 @@ class Si5Lookup(models.TransientModel):
         related="product_id.weight", readonly=True, string="Current weight"
     )
     weight_uom_name = fields.Char(related="product_id.weight_uom_name")
+    current_image = fields.Binary(
+        related="product_id.image_128", readonly=True, string="Current picture"
+    )
     proposed_name = fields.Char(string="Suggested name")
     proposed_description = fields.Text(string="Suggested description")
     proposed_weight = fields.Float(

@@ -4,15 +4,22 @@
         <field name="model">si5.lookup</field>
         <field name="inherit_id" ref="product_si5_gtin.lookup_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='current_description']" position="after">
-                <field name="current_ncm_id"/>
-                <field name="current_cest_id"/>
+            <xpath expr="//div[@name='row_fiscal']" position="after">
+                <div class="row align-items-center mb-2" name="row_ncm">
+                    <div class="col-2"><span class="fw-bold">NCM</span></div>
+                    <div class="col-4"><field name="current_ncm_id" nolabel="1"/></div>
+                    <div class="col-4"><field name="proposed_ncm_id" nolabel="1"/><span class="text-muted" invisible="proposed_ncm_id">Not found in the fiscal tables</span></div>
+                    <div class="col-2 text-center"><field name="apply_ncm" nolabel="1" widget="boolean_toggle" invisible="not proposed_ncm_id"/></div>
+                </div>
+                <div class="row align-items-center mb-2" name="row_cest">
+                    <div class="col-2"><span class="fw-bold">CEST</span></div>
+                    <div class="col-4"><field name="current_cest_id" nolabel="1"/></div>
+                    <div class="col-4"><field name="proposed_cest_id" nolabel="1"/><span class="text-muted" invisible="proposed_cest_id">No CEST for this NCM</span></div>
+                    <div class="col-2 text-center"><field name="apply_cest" nolabel="1" widget="boolean_toggle" invisible="not proposed_cest_id"/></div>
+                </div>
             </xpath>
-            <xpath expr="//field[@name='fiscal_reference']" position="after">
-                <field name="proposed_ncm_id"/>
-                <field name="apply_ncm" invisible="not proposed_ncm_id"/>
-                <field name="proposed_cest_id"/>
-                <field name="apply_cest" invisible="not proposed_cest_id"/>
+            <xpath expr="//div[@name='confirm_shared_box']" position="attributes">
+                <attribute name="invisible">not (apply_name or apply_description or apply_image or apply_ncm or apply_cest)</attribute>
             </xpath>
         </field>
     </record>

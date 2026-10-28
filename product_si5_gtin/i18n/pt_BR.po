@@ -6,14 +6,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-27 14:23+0000\n"
-"PO-Revision-Date: 2026-10-27 14:23+0000\n"
+"POT-Creation-Date: 2026-10-28 00:17+0000\n"
+"PO-Revision-Date: 2026-10-28 00:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Fiscal reference</span>"
+msgstr "<span class=\"fw-bold\">Referência fiscal</span>"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Internal note</span>"
+msgstr "<span class=\"fw-bold\">Anotação interna</span>"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Name</span>"
+msgstr "<span class=\"fw-bold\">Nome</span>"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Picture</span>"
+msgstr "<span class=\"fw-bold\">Foto</span>"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Weight</span>"
+msgstr "<span class=\"fw-bold\">Peso</span>"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"text-muted\" invisible=\"image_url\">No picture</span>"
+msgstr "<span class=\"text-muted\" invisible=\"image_url\">Sem foto</span>"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"text-muted\" invisible=\"proposed_weight\">No suggestion</span>"
+msgstr "<span class=\"text-muted\" invisible=\"proposed_weight\">Sem sugestão</span>"
 
 #. module: product_si5_gtin
 #. odoo-python
@@ -94,11 +129,6 @@ msgid "Config Settings"
 msgstr "Configurações"
 
 #. module: product_si5_gtin
-#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
-msgid "Confirm download and preview image"
-msgstr "Confirmar download e visualizar imagem"
-
-#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__confirm_shared
 msgid "Confirm impact on the shared template and companies"
 msgstr "Confirmar impacto no template compartilhado e nas empresas"
@@ -120,6 +150,11 @@ msgid "Created on"
 msgstr "Criado em"
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Current"
+msgstr "Atual"
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_description
 msgid "Current description"
 msgstr "Descrição atual"
@@ -130,9 +165,9 @@ msgid "Current name"
 msgstr "Nome atual"
 
 #. module: product_si5_gtin
-#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
-msgid "Current product"
-msgstr "Cadastro atual"
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_image
+msgid "Current picture"
+msgstr "Foto atual"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_weight
@@ -143,6 +178,11 @@ msgstr "Peso atual"
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__display_name
 msgid "Display Name"
 msgstr "Nome exibido"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Download and preview"
+msgstr "Baixar e visualizar"
 
 #. module: product_si5_gtin
 #. odoo-python
@@ -250,6 +290,11 @@ msgid "Product not found. Catalogue coverage is not guaranteed."
 msgstr "Produto não encontrado. A cobertura do catálogo não é garantida."
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Replace"
+msgstr "Substituir"
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_description
 msgid "Replace description"
 msgstr "Substituir descrição"
@@ -324,6 +369,11 @@ msgid "State"
 msgstr "Estado"
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Suggested"
+msgstr "Sugerido"
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_description
 msgid "Suggested description"
 msgstr "Descrição sugerida"
@@ -337,11 +387,6 @@ msgstr "Nome sugerido"
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_weight
 msgid "Suggested weight"
 msgstr "Peso sugerido"
-
-#. module: product_si5_gtin
-#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
-msgid "Suggestions to review"
-msgstr "Sugestões para revisar"
 
 #. module: product_si5_gtin
 #. odoo-python

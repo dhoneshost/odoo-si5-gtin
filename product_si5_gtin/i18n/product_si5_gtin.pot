@@ -6,14 +6,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-27 14:23+0000\n"
-"PO-Revision-Date: 2026-10-27 14:23+0000\n"
+"POT-Creation-Date: 2026-10-28 00:17+0000\n"
+"PO-Revision-Date: 2026-10-28 00:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Fiscal reference</span>"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Internal note</span>"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Name</span>"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Picture</span>"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"fw-bold\">Weight</span>"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"text-muted\" invisible=\"image_url\">No picture</span>"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "<span class=\"text-muted\" invisible=\"proposed_weight\">No suggestion</span>"
+msgstr ""
 
 #. module: product_si5_gtin
 #. odoo-python
@@ -87,11 +122,6 @@ msgid "Config Settings"
 msgstr ""
 
 #. module: product_si5_gtin
-#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
-msgid "Confirm download and preview image"
-msgstr ""
-
-#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__confirm_shared
 msgid "Confirm impact on the shared template and companies"
 msgstr ""
@@ -113,6 +143,11 @@ msgid "Created on"
 msgstr ""
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Current"
+msgstr ""
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_description
 msgid "Current description"
 msgstr ""
@@ -123,8 +158,8 @@ msgid "Current name"
 msgstr ""
 
 #. module: product_si5_gtin
-#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
-msgid "Current product"
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__current_image
+msgid "Current picture"
 msgstr ""
 
 #. module: product_si5_gtin
@@ -135,6 +170,11 @@ msgstr ""
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__display_name
 msgid "Display Name"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Download and preview"
 msgstr ""
 
 #. module: product_si5_gtin
@@ -242,6 +282,11 @@ msgid "Product not found. Catalogue coverage is not guaranteed."
 msgstr ""
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Replace"
+msgstr ""
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__apply_description
 msgid "Replace description"
 msgstr ""
@@ -314,6 +359,11 @@ msgid "State"
 msgstr ""
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
+msgid "Suggested"
+msgstr ""
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_description
 msgid "Suggested description"
 msgstr ""
@@ -326,11 +376,6 @@ msgstr ""
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__proposed_weight
 msgid "Suggested weight"
-msgstr ""
-
-#. module: product_si5_gtin
-#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
-msgid "Suggestions to review"
 msgstr ""
 
 #. module: product_si5_gtin

@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Product SI5 GTIN lookup",
-    "version": "18.0.2.0.0",
+    "version": "18.0.2.1.0",
     "summary": "Look up a product by GTIN on SI5 Global and apply reviewed data",
     "author": "SI5",
     "license": "AGPL-3",
