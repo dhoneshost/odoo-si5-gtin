@@ -29,6 +29,7 @@
                     <field name="product_id"/>
                     <field name="code"/>
                     <field name="company_id" groups="base.group_multi_company"/>
+                    <field name="state" invisible="1"/>
                 </group>
                 <div name="data_sent">
                     <p class="fw-bold mb-1">What will be sent</p>
@@ -45,7 +46,7 @@
                     <label for="consent" class="mb-0"/>
                 </div>
                 <footer>
-                    <button name="action_lookup" type="object" string="Look up" class="btn-primary" invisible="not consent"/>
+                    <button name="action_lookup" type="object" string="Look up" class="btn-primary" invisible="not consent or state != 'pending'"/>
                     <button special="cancel" string="Cancel" class="btn-secondary"/>
                 </footer>
             </form>

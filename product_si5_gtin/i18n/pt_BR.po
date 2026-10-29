@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 00:00+0000\n"
+"POT-Creation-Date: 2026-10-29 11:19+0000\n"
 "PO-Revision-Date: 2026-10-28 00:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -332,6 +332,11 @@ msgid "Paste the token"
 msgstr "Cole o token"
 
 #. module: product_si5_gtin
+#: model:ir.model.fields.selection,name:product_si5_gtin.selection__si5_lookup_consent__state__pending
+msgid "Pending"
+msgstr "Pendente"
+
+#. module: product_si5_gtin
 #: model:ir.model,name:product_si5_gtin.model_product_template
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__product_id
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__product_id
@@ -439,6 +444,7 @@ msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__state
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__state
 msgid "State"
 msgstr "Estado"
 
@@ -599,6 +605,16 @@ msgstr ""
 #. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"This consent was already used for a lookup. Click Look up GTIN with SI5 "
+"again to start a new one."
+msgstr ""
+"Este consentimento já foi usado em uma consulta. Clique em Consultar GTIN na"
+" SI5 de novo para iniciar outra."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
 msgid "This is a restricted circulation code, not a universal GTIN lookup."
 msgstr ""
 "Este código é de circulação restrita e não permite consulta universal por "
@@ -642,6 +658,17 @@ msgstr "Para revisar"
 #: code:addons/product_si5_gtin/models.py:0
 msgid "Use the product lookup button to create a review."
 msgstr "Use o botão de consulta do produto para criar uma prévia."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "Use the product lookup button to start a lookup."
+msgstr "Use o botão de consulta do produto para iniciar uma consulta."
+
+#. module: product_si5_gtin
+#: model:ir.model.fields.selection,name:product_si5_gtin.selection__si5_lookup_consent__state__used
+msgid "Used"
+msgstr "Usado"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__preview_image

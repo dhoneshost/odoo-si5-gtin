@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Product GTIN Lookup",
-    "version": "18.0.2.2.0",
+    "version": "18.0.2.2.1",
     "summary": "Look up a product barcode on SI5 Global and apply reviewed data. "
     "External service: after explicit consent on each lookup, only the barcode, "
     "the company API token and a module User-Agent are sent to global.si5.com.br",

@@ -11,7 +11,7 @@ from PIL import Image
 
 from odoo import api, fields, models
 from odoo.exceptions import AccessError, UserError
-from odoo.tools import plaintext2html
+from odoo.tools import clean_context, plaintext2html
 from odoo.tools.image import get_webp_size
 
 from .service import LookupError, image, lookup
@@ -94,10 +94,22 @@ class ProductProduct(models.Model):
     def action_si5_lookup(self):
         """Open the consent dialog. Nothing is sent to SI5 Global here."""
         self._si5_check_lookup_access()
-        consent = self.env["si5.lookup.consent"].create(
-            {"product_id": self.id, "code": self.barcode}
+        # Server-side factory: explicit values only, no default_* from the caller's
+        # context (default_consent=True must not open the box already ticked).
+        consent = (
+            self.env["si5.lookup.consent"]
+            .sudo()
+            .with_context(clean_context(self.env.context))
+            .create(
+                {
+                    "product_id": self.id,
+                    "company_id": self.env.company.id,
+                    "code": self.barcode,
+                    "consent": False,
+                }
+            )
         )
-        return consent._window_action()
+        return consent.with_env(self.env)._window_action()
 
     def _si5_lookup_preview(self):
         """Query SI5 Global and open the review. Only called after explicit consent."""
@@ -136,12 +148,48 @@ class Si5LookupConsent(models.TransientModel):
         string="I agree to send this barcode to SI5 Global",
         default=False,
     )
+    # One consent, one request: "used" is claimed atomically before the request.
+    state = fields.Selection(
+        [("pending", "Pending"), ("used", "Used")],
+        default="pending",
+        required=True,
+        readonly=True,
+    )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        if not self.env.su:
+            raise AccessError(
+                self.env._("Use the product lookup button to start a lookup.")
+            )
+        # Always born unticked and unused, whatever the caller passes.
+        for vals in vals_list:
+            vals.update(consent=False, state="pending")
+        return super().create(vals_list)
 
     def write(self, vals):
         # Only the consent box is the user's to change.
         if set(vals) - {"consent"}:
             raise AccessError(self.env._("The product and barcode cannot be changed."))
         return super().write(vals)
+
+    def _claim(self):
+        """Mark this consent as used, once.
+
+        The conditional UPDATE locks the row: a concurrent call waits for this
+        transaction and then gets a serialization failure (Odoo retries the
+        request, which then finds the consent used). If the lookup raises, the
+        transaction is rolled back and the consent is pending again, so the user
+        can click Look up again in the same dialog.
+        """
+        self.env.cr.execute(
+            "UPDATE si5_lookup_consent SET state = 'used', write_date = now() at time zone 'UTC'"
+            " WHERE id = %s AND state = 'pending' RETURNING id",
+            (self.id,),
+        )
+        claimed = bool(self.env.cr.fetchone())
+        self.invalidate_recordset(["state"])
+        return claimed
 
     def _window_action(self):
         return {
@@ -168,6 +216,13 @@ class Si5LookupConsent(models.TransientModel):
             )
         if self.product_id.barcode != self.code:
             raise UserError(self.env._("The barcode changed. Start the lookup again."))
+        if not self._claim():
+            raise UserError(
+                self.env._(
+                    "This consent was already used for a lookup. "
+                    "Click Look up GTIN with SI5 again to start a new one."
+                )
+            )
         return self.product_id._si5_lookup_preview()
 
 

@@ -85,6 +85,88 @@ class TestLookup(TransactionCase):
         with self.assertRaises(AccessError):
             consent.write({"code": other.barcode})
 
+    def _data(self):
+        return {"produto": "Proposed", "marca": "", "imagem_url": "", "ncm": "", "cest_codigo": ""}
+
+    def test_consent_ignores_context_defaults(self):
+        product = self.product.with_context(default_consent=True, default_state="used")
+        with patch("odoo.addons.product_si5_gtin.models.lookup") as api:
+            consent = self.env["si5.lookup.consent"].browse(
+                product.action_si5_lookup()["res_id"]
+            )
+            self.assertFalse(consent.consent, "default_consent must not tick the box")
+            self.assertEqual(consent.state, "pending")
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            api.assert_not_called()
+
+    def test_consent_only_created_by_the_button(self):
+        # A product manager (not superuser) calling create directly, e.g. by RPC.
+        with self.assertRaises(AccessError):
+            self.env["si5.lookup.consent"].with_user(self.manager()).create(
+                {"product_id": self.product.id, "code": self.product.barcode, "consent": True}
+            )
+        # Even the server factory cannot create it ticked.
+        consent = self.env["si5.lookup.consent"].sudo().create(
+            {"product_id": self.product.id, "code": self.product.barcode, "consent": True, "state": "used"}
+        )
+        self.assertFalse(consent.consent)
+        self.assertEqual(consent.state, "pending")
+
+    def test_consent_single_use_sequential(self):
+        consent = self.env["si5.lookup.consent"].browse(
+            self.product.action_si5_lookup()["res_id"]
+        )
+        consent.consent = True
+        with patch(
+            "odoo.addons.product_si5_gtin.models.lookup", return_value=self._data()
+        ) as api:
+            consent.action_lookup()
+            self.assertEqual(consent.state, "used")
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            self.assertEqual(api.call_count, 1)
+
+    def test_consent_retry_after_failed_lookup(self):
+        consent = self.env["si5.lookup.consent"].browse(
+            self.product.action_si5_lookup()["res_id"]
+        )
+        consent.consent = True
+        with patch(
+            "odoo.addons.product_si5_gtin.models.lookup",
+            side_effect=LookupError("network"),
+        ) as api:
+            # The request transaction is rolled back (savepoint here): the
+            # consent is pending again and the same dialog can retry.
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            self.assertEqual(api.call_count, 1)
+        consent.invalidate_recordset(["state"])
+        self.assertEqual(consent.state, "pending")
+        with patch(
+            "odoo.addons.product_si5_gtin.models.lookup", return_value=self._data()
+        ) as api:
+            review = consent.action_lookup()
+            api.assert_called_once()
+        self.assertEqual(review["res_model"], "si5.lookup")
+        self.assertEqual(consent.state, "used")
+
+    def test_consent_claimed_by_another_transaction(self):
+        consent = self.env["si5.lookup.consent"].browse(
+            self.product.action_si5_lookup()["res_id"]
+        )
+        consent.consent = True
+        # What a concurrent request leaves behind once it has committed.
+        self.env.cr.execute(
+            "UPDATE si5_lookup_consent SET state = 'used' WHERE id = %s", (consent.id,)
+        )
+        with patch("odoo.addons.product_si5_gtin.models.lookup") as api:
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            api.assert_not_called()
+
     def test_consent_barcode_changed(self):
         consent = self.env["si5.lookup.consent"].browse(
             self.product.action_si5_lookup()["res_id"]

@@ -67,9 +67,37 @@ odoo -d test_si5 -i product_si5_gtin,product_si5_gtin_l10n_br_fiscal \
 
 All tests mock the network; a guard fails the test if real transport is attempted.
 
+```bash
+# concurrency of the lookup consent (two real transactions, disposable database)
+odoo shell -d test_si5 < tests/odoo_concurrency_consent.py
+```
+
+A consent allows one lookup: two simultaneous clicks produce a single API request.
+
+## Maturity and versioning
+
+| Addon | Version | Maturity (`development_status`) |
+|---|---|---|
+| `product_si5_gtin` (Product GTIN Lookup) | 18.0.2.2.1 | Beta |
+| `product_si5_gtin_l10n_br_fiscal` (GTIN Brazilian Fiscal) | 18.0.1.2.0 | Alpha |
+
+- **Not Stable yet.** Both addons work and are covered by automated tests and by
+  tests on a real Odoo 18 database, but they have not been validated in production
+  stores yet; behaviour may still change between minor versions.
+- **Version numbers are never lowered.** They keep the history of each addon
+  (18.0.2.x, 18.0.1.x). Going back to 0.x would stop existing databases from
+  receiving updates, because Odoo only upgrades to a higher version.
+- **Odoo Apps.** The vendor guidelines ask Beta apps to use a version below 1.0.
+  We do not renumber to meet that rule; instead the manifests and the store pages
+  state the maturity explicitly, so buyers know the addon is experimental.
+- **Promotion to Stable** only after the release is validated: published on Odoo
+  Apps, installed and upgraded on real databases, and no blocking issue reported
+  for 30 days. For the bridge, also NCM/CEST suggestions reviewed with an
+  accountant on real products. Until then the status stays Beta/Alpha.
+
 ## Status and OCA
 
-Beta. Discussed with the Brazilian localization maintainers in
+Discussed with the Brazilian localization maintainers in
 [OCA/l10n-brazil#5358](https://github.com/OCA/l10n-brazil/discussions/5358):
 the plan is to mature it here first and propose it to the OCA once validated by
 users. Issues and pull requests are welcome.
