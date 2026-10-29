@@ -17,6 +17,19 @@
                     <div class="col-4"><field name="proposed_cest_id" nolabel="1"/><span class="text-muted" invisible="proposed_cest_id">No CEST for this NCM</span></div>
                     <div class="col-2 text-center"><field name="apply_cest" nolabel="1" widget="boolean_toggle" invisible="not proposed_cest_id"/></div>
                 </div>
+                <div class="row mb-2" name="row_cest_link" invisible="not proposed_cest_id">
+                    <div class="col-2"/>
+                    <div class="col-10 small">
+                        <field name="cest_ncm_link" invisible="1"/>
+                        <span class="text-success" invisible="cest_ncm_link != 'verified'"><i class="fa fa-check"/> The fiscal tables link this CEST to the NCM.</span>
+                        <span class="text-warning" invisible="cest_ncm_link != 'not_linked'"><i class="fa fa-exclamation-triangle"/> Not verified: the fiscal tables do not link this CEST to any NCM. Check the pair with your accountant before applying it.</span>
+                        <span class="text-warning" invisible="cest_ncm_link != 'no_ncm'"><i class="fa fa-exclamation-triangle"/> Not verified: the product has no NCM to check this CEST against.</span>
+                    </div>
+                </div>
+                <div class="row mb-2" name="row_ncm_effects" invisible="not apply_ncm">
+                    <div class="col-2"/>
+                    <div class="col-10 small text-muted">l10n_br_fiscal derives the Fiscal Product Genre (NCM chapter) and the Export UoM from the NCM. This module changes no other fiscal setting: fiscal type, ICMS origin, taxes and operations stay as they are.</div>
+                </div>
             </xpath>
             <xpath expr="//div[@name='confirm_shared_box']" position="attributes">
                 <attribute name="invisible">not (apply_name or apply_description or apply_image or apply_ncm or apply_cest)</attribute>

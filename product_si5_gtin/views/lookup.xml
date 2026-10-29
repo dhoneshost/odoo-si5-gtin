@@ -19,6 +19,38 @@
             </xpath>
         </field>
     </record>
+    <record id="lookup_consent_form" model="ir.ui.view">
+        <field name="name">si5.lookup.consent.form</field>
+        <field name="model">si5.lookup.consent</field>
+        <field name="arch" type="xml">
+            <!-- Nothing is sent before "Look up" with the box ticked; Cancel/close stays in the browser. -->
+            <form string="Look up GTIN with SI5 Global">
+                <group>
+                    <field name="product_id"/>
+                    <field name="code"/>
+                    <field name="company_id" groups="base.group_multi_company"/>
+                </group>
+                <div name="data_sent">
+                    <p class="fw-bold mb-1">What will be sent</p>
+                    <ul>
+                        <li>One HTTPS request from the Odoo server to <b>global.si5.com.br</b> with this <b>barcode</b>, the company <b>API token</b> and a User-Agent naming this module.</li>
+                        <li>No other Odoo data: not the product name, prices, stock, customers, partners, invoices or users.</li>
+                        <li>If the review shows a picture, it is downloaded from the SI5 picture server only when you click <i>Download and preview</i>, without the token.</li>
+                        <li>SI5 Global receives the request itself (barcode, time and the server IP address) to count the plan quota. Privacy policy: <a href="https://global.si5.com.br/privacidade" target="_blank">global.si5.com.br/privacidade</a>.</li>
+                    </ul>
+                    <p class="text-muted mb-3">The lookup only shows suggestions: nothing is written to the product until you review and apply them.</p>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                    <field name="consent" nolabel="1"/>
+                    <label for="consent" class="mb-0"/>
+                </div>
+                <footer>
+                    <button name="action_lookup" type="object" string="Look up" class="btn-primary" invisible="not consent"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
     <record id="lookup_form" model="ir.ui.view">
         <field name="name">si5.lookup.form</field>
         <field name="model">si5.lookup</field>

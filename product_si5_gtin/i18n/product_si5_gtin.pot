@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0-20261015\n"
+"Project-Id-Version: Odoo Server 18.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 00:17+0000\n"
-"PO-Revision-Date: 2026-10-28 00:17+0000\n"
+"POT-Creation-Date: 2026-10-29 00:00+0000\n"
+"PO-Revision-Date: 2026-10-29 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -85,6 +85,11 @@ msgid ""
 msgstr ""
 
 #. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__code
+msgid "Barcode to send"
+msgstr ""
+
+#. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "Brand: %(brand)s"
@@ -96,6 +101,7 @@ msgid "CEST"
 msgstr ""
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
 #: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
 msgid "Cancel"
 msgstr ""
@@ -113,6 +119,7 @@ msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__company_id
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__company_id
 msgid "Company"
 msgstr ""
 
@@ -134,11 +141,13 @@ msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__create_uid
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__create_uid
 msgid "Created by"
 msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__create_date
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__create_date
 msgid "Created on"
 msgstr ""
 
@@ -169,6 +178,7 @@ msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__display_name
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -205,8 +215,21 @@ msgid "GTIN lookup token"
 msgstr ""
 
 #. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__consent
+msgid "I agree to send this barcode to SI5 Global"
+msgstr ""
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__id
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__id
 msgid "ID"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"If the review shows a picture, it is downloaded from the SI5 picture server "
+"only when you click <i>Download and preview</i>, without the token."
 msgstr ""
 
 #. module: product_si5_gtin
@@ -216,18 +239,32 @@ msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__write_uid
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__write_uid
 msgid "Last Updated by"
 msgstr ""
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__write_date
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__write_date
 msgid "Last Updated on"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "Look up"
 msgstr ""
 
 #. module: product_si5_gtin
 #: model_terms:ir.ui.view,arch_db:product_si5_gtin.product_form_si5
 #: model_terms:ir.ui.view,arch_db:product_si5_gtin.template_form_si5
 msgid "Look up GTIN with SI5"
+msgstr ""
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "Look up GTIN with SI5 Global"
 msgstr ""
 
 #. module: product_si5_gtin
@@ -242,9 +279,24 @@ msgid "NCM: %(ncm)s | CEST: %(cest)s. Reference only; ask your accountant."
 msgstr ""
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"No other Odoo data: not the product name, prices, stock, customers, "
+"partners, invoices or users."
+msgstr ""
+
+#. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "No weight was suggested for this product."
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"One HTTPS request from the Odoo server to <b>global.si5.com.br</b> with this"
+" <b>barcode</b>, the company <b>API token</b> and a User-Agent naming this "
+"module."
 msgstr ""
 
 #. module: product_si5_gtin
@@ -267,6 +319,7 @@ msgstr ""
 #. module: product_si5_gtin
 #: model:ir.model,name:product_si5_gtin.model_product_template
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__product_id
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__product_id
 msgid "Product"
 msgstr ""
 
@@ -322,6 +375,18 @@ msgstr ""
 #: model:ir.model.fields,field_description:product_si5_gtin.field_res_company__si5_token
 #: model:ir.model.fields,field_description:product_si5_gtin.field_res_config_settings__si5_token
 msgid "SI5 Global API token"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"SI5 Global receives the request itself (barcode, time and the server IP "
+"address) to count the plan quota. Privacy policy:"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_si5_lookup_consent
+msgid "SI5 lookup consent"
 msgstr ""
 
 #. module: product_si5_gtin
@@ -411,6 +476,12 @@ msgstr ""
 #. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
+msgid "The barcode changed. Start the lookup again."
+msgstr ""
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
 msgid "The image content, dimensions or format is not allowed."
 msgstr ""
 
@@ -418,6 +489,13 @@ msgstr ""
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "The image format or size is not allowed."
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"The lookup only shows suggestions: nothing is written to the product until "
+"you review and apply them."
 msgstr ""
 
 #. module: product_si5_gtin
@@ -442,6 +520,12 @@ msgstr ""
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "The network request failed or timed out. Try again later."
+msgstr ""
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The product and barcode cannot be changed."
 msgstr ""
 
 #. module: product_si5_gtin
@@ -494,6 +578,12 @@ msgstr ""
 #. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
+msgid "This request belongs to another user or company."
+msgstr ""
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
 msgid "This review belongs to another user or company."
 msgstr ""
 
@@ -501,6 +591,14 @@ msgstr ""
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "This review has already been applied."
+msgstr ""
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"Tick the consent box to send the barcode to SI5 Global, or cancel to send "
+"nothing."
 msgstr ""
 
 #. module: product_si5_gtin
@@ -522,4 +620,14 @@ msgstr ""
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__weight_uom_name
 msgid "Weight unit of measure label"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "What will be sent"
+msgstr ""
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "global.si5.com.br/privacidade"
 msgstr ""

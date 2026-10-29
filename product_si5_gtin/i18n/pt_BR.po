@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 00:17+0000\n"
+"POT-Creation-Date: 2026-10-29 00:00+0000\n"
 "PO-Revision-Date: 2026-10-28 00:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -92,6 +92,11 @@ msgstr ""
 "em Configurações."
 
 #. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__code
+msgid "Barcode to send"
+msgstr "Código de barras a enviar"
+
+#. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "Brand: %(brand)s"
@@ -103,6 +108,7 @@ msgid "CEST"
 msgstr "CEST"
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
 #: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_form
 msgid "Cancel"
 msgstr "Cancelar"
@@ -120,6 +126,7 @@ msgstr "Empresas"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__company_id
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__company_id
 msgid "Company"
 msgstr "Empresa"
 
@@ -141,11 +148,13 @@ msgstr "Confirme o impacto nas outras variantes e empresas antes de aplicar."
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__create_uid
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__create_uid
 msgid "Created by"
 msgstr "Criado por"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__create_date
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__create_date
 msgid "Created on"
 msgstr "Criado em"
 
@@ -176,6 +185,7 @@ msgstr "Peso atual"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__display_name
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__display_name
 msgid "Display Name"
 msgstr "Nome exibido"
 
@@ -212,9 +222,24 @@ msgid "GTIN lookup token"
 msgstr "Token de consulta de GTIN"
 
 #. module: product_si5_gtin
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__consent
+msgid "I agree to send this barcode to SI5 Global"
+msgstr "Concordo em enviar este código de barras ao SI5 Global"
+
+#. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__id
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__id
 msgid "ID"
 msgstr "ID"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"If the review shows a picture, it is downloaded from the SI5 picture server "
+"only when you click <i>Download and preview</i>, without the token."
+msgstr ""
+"Se a revisão mostrar uma foto, ela só é baixada do servidor de imagens do "
+"SI5 quando você clicar em <i>Baixar e visualizar</i>, sem o token."
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__image_url
@@ -223,19 +248,33 @@ msgstr "Fonte da imagem"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__write_uid
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__write_uid
 msgid "Last Updated by"
 msgstr "Última atualização por"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__write_date
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__write_date
 msgid "Last Updated on"
 msgstr "Última atualização em"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "Look up"
+msgstr "Consultar"
 
 #. module: product_si5_gtin
 #: model_terms:ir.ui.view,arch_db:product_si5_gtin.product_form_si5
 #: model_terms:ir.ui.view,arch_db:product_si5_gtin.template_form_si5
 msgid "Look up GTIN with SI5"
 msgstr "Consultar GTIN na SI5"
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "Look up GTIN with SI5 Global"
+msgstr "Consultar GTIN no SI5 Global"
 
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__ncm_code
@@ -250,10 +289,30 @@ msgstr ""
 "NCM: %(ncm)s | CEST: %(cest)s. Apenas referência; consulte seu contador."
 
 #. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"No other Odoo data: not the product name, prices, stock, customers, "
+"partners, invoices or users."
+msgstr ""
+"Nenhum outro dado do Odoo: nem nome do produto, preços, estoque, clientes, "
+"parceiros, faturas ou usuários."
+
+#. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
 msgid "No weight was suggested for this product."
 msgstr "Nenhum peso foi sugerido para este produto."
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"One HTTPS request from the Odoo server to <b>global.si5.com.br</b> with this"
+" <b>barcode</b>, the company <b>API token</b> and a User-Agent naming this "
+"module."
+msgstr ""
+"Uma requisição HTTPS do servidor Odoo para <b>global.si5.com.br</b> com este"
+" <b>código de barras</b>, o <b>token da API</b> da empresa e um User-Agent "
+"com o nome deste módulo."
 
 #. module: product_si5_gtin
 #. odoo-python
@@ -275,6 +334,7 @@ msgstr "Cole o token"
 #. module: product_si5_gtin
 #: model:ir.model,name:product_si5_gtin.model_product_template
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__product_id
+#: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup_consent__product_id
 msgid "Product"
 msgstr "Produto"
 
@@ -331,6 +391,20 @@ msgstr "SI5 Global"
 #: model:ir.model.fields,field_description:product_si5_gtin.field_res_config_settings__si5_token
 msgid "SI5 Global API token"
 msgstr "Token da API SI5 Global"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"SI5 Global receives the request itself (barcode, time and the server IP "
+"address) to count the plan quota. Privacy policy:"
+msgstr ""
+"O SI5 Global recebe a própria requisição (código de barras, horário e IP do "
+"servidor) para contar a cota do plano. Política de privacidade:"
+
+#. module: product_si5_gtin
+#: model:ir.model,name:product_si5_gtin.model_si5_lookup_consent
+msgid "SI5 lookup consent"
+msgstr "Consentimento da consulta SI5"
 
 #. module: product_si5_gtin
 #: model:ir.model,name:product_si5_gtin.model_si5_lookup
@@ -422,6 +496,12 @@ msgstr "O token SI5 é inválido ou expirou."
 #. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
+msgid "The barcode changed. Start the lookup again."
+msgstr "O código de barras mudou. Comece a consulta de novo."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
 msgid "The image content, dimensions or format is not allowed."
 msgstr "O conteúdo, as dimensões ou o formato da imagem não são permitidos."
 
@@ -430,6 +510,15 @@ msgstr "O conteúdo, as dimensões ou o formato da imagem não são permitidos."
 #: code:addons/product_si5_gtin/models.py:0
 msgid "The image format or size is not allowed."
 msgstr "O formato ou o tamanho da imagem não é permitido."
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid ""
+"The lookup only shows suggestions: nothing is written to the product until "
+"you review and apply them."
+msgstr ""
+"A consulta só mostra sugestões: nada é gravado no produto até você revisar e"
+" aplicar."
 
 #. module: product_si5_gtin
 #. odoo-python
@@ -455,6 +544,12 @@ msgstr "O destino de rede não é permitido."
 msgid "The network request failed or timed out. Try again later."
 msgstr ""
 "A solicitação de rede falhou ou excedeu o tempo limite. Tente mais tarde."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid "The product and barcode cannot be changed."
+msgstr "O produto e o código de barras não podem ser alterados."
 
 #. module: product_si5_gtin
 #. odoo-python
@@ -512,6 +607,12 @@ msgstr ""
 #. module: product_si5_gtin
 #. odoo-python
 #: code:addons/product_si5_gtin/models.py:0
+msgid "This request belongs to another user or company."
+msgstr "Esta solicitação pertence a outro usuário ou empresa."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
 msgid "This review belongs to another user or company."
 msgstr "Esta prévia pertence a outro usuário ou empresa."
 
@@ -520,6 +621,16 @@ msgstr "Esta prévia pertence a outro usuário ou empresa."
 #: code:addons/product_si5_gtin/models.py:0
 msgid "This review has already been applied."
 msgstr "Esta prévia já foi aplicada."
+
+#. module: product_si5_gtin
+#. odoo-python
+#: code:addons/product_si5_gtin/models.py:0
+msgid ""
+"Tick the consent box to send the barcode to SI5 Global, or cancel to send "
+"nothing."
+msgstr ""
+"Marque a caixa de consentimento para enviar o código de barras ao SI5 "
+"Global, ou cancele para não enviar nada."
 
 #. module: product_si5_gtin
 #: model:ir.model.fields.selection,name:product_si5_gtin.selection__si5_lookup__state__draft
@@ -540,4 +651,14 @@ msgstr "Prévia de imagem validada"
 #. module: product_si5_gtin
 #: model:ir.model.fields,field_description:product_si5_gtin.field_si5_lookup__weight_uom_name
 msgid "Weight unit of measure label"
-msgstr ""
+msgstr "Rótulo da unidade de peso"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "What will be sent"
+msgstr "O que será enviado"
+
+#. module: product_si5_gtin
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin.lookup_consent_form
+msgid "global.si5.com.br/privacidade"
+msgstr "global.si5.com.br/privacidade"

@@ -252,7 +252,7 @@ class CatalogueContractTests(unittest.TestCase):
             url = f"https://{host}/img/78/91/7891000100103.webp"
             seen = {}
 
-            def fake(path, host=None, **kwargs):
+            def fake(path, host=None, seen=seen, **kwargs):
                 seen["host"] = host
                 return 200, {"content-type": "image/webp"}, raw
 

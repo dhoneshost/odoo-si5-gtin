@@ -23,6 +23,15 @@ class Si5Lookup(models.TransientModel):
         string="Suggested CEST",
         compute="_compute_proposed_fiscal",
     )
+    cest_ncm_link = fields.Selection(
+        [
+            ("verified", "Linked to the NCM in the fiscal tables"),
+            ("not_linked", "The fiscal tables do not link this CEST to any NCM"),
+            ("no_ncm", "No NCM to check this CEST against"),
+        ],
+        string="CEST × NCM check",
+        compute="_compute_proposed_fiscal",
+    )
     apply_ncm = fields.Boolean(string="Replace NCM", default=False)
     apply_cest = fields.Boolean(string="Replace CEST", default=False)
 
@@ -46,13 +55,23 @@ class Si5Lookup(models.TransientModel):
                 else Cest
             )
             # The fiscal engine restricts CEST to the product NCM; keep that rule.
-            # A few CEST rows have no NCM link in the tables (codes like "4029"
-            # that lost the leading zero): nothing to check against, keep the
-            # suggestion for the user to review.
+            # Some CEST rows have no NCM link in the tables (codes like "4029" that
+            # lost the leading zero), and a product may have no NCM yet: then the
+            # pair cannot be checked, so the suggestion stays but is flagged as
+            # unverified instead of being presented as compatible.
             target_ncm = ncm if review.apply_ncm else review.current_ncm_id
-            if cest and target_ncm and cest.ncm_ids and target_ncm not in cest.ncm_ids:
-                cest = Cest
+            link = False
+            if cest:
+                if not cest.ncm_ids:
+                    link = "not_linked"
+                elif not target_ncm:
+                    link = "no_ncm"
+                elif target_ncm in cest.ncm_ids:
+                    link = "verified"
+                else:
+                    cest = Cest
             review.proposed_cest_id = cest
+            review.cest_ncm_link = link
 
     def _si5_selected(self):
         return super()._si5_selected() or self.apply_ncm or self.apply_cest

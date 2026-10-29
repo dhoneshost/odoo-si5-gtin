@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_si5_lookup,SI5 lookup,model_si5_lookup,product.group_product_manager,1,1,1,1
+access_si5_lookup_consent,SI5 lookup consent,model_si5_lookup_consent,product.group_product_manager,1,1,1,1

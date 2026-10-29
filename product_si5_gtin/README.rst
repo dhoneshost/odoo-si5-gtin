@@ -1,6 +1,6 @@
-=======================
-Product SI5 GTIN lookup
-=======================
+===================
+Product GTIN Lookup
+===================
 
 |badge1| |badge2|
 
@@ -42,6 +42,9 @@ Usage
 
 #. Open a product (or the specific variant) with a barcode and click
    **Look up GTIN with SI5**.
+#. A consent dialog lists what will be sent. Tick **I agree to send this
+   barcode to SI5 Global** (it starts unticked) and click **Look up**.
+   **Cancel**, the close button or Esc send nothing.
 #. Each row shows current and suggested values. Turn on **Replace** only for
    the fields you want.
 #. For the image, click **Download and preview**, check it, then
@@ -51,6 +54,19 @@ Usage
 
 If the product changes after the lookup, run it again. A review can be applied
 once. Restricted circulation codes (prefixes 2xx, 040-049) are rejected.
+
+Data sent to SI5 Global
+=======================
+
+* Only after the consent above: one HTTPS request from the Odoo server to
+  ``global.si5.com.br`` with the product barcode, the company API token and a
+  User-Agent naming this module.
+* The picture is downloaded from the SI5 picture server only when the user
+  clicks **Download and preview**, without the token.
+* No other Odoo data is sent (product name, prices, stock, customers, partners,
+  invoices, users). Nothing runs in the background.
+* SI5 Global receives the request itself (barcode, time, server IP address) to
+  count the plan quota. Privacy policy: https://global.si5.com.br/privacidade
 
 Known issues / Roadmap
 ======================

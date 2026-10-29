@@ -11,6 +11,15 @@ from odoo.tools import float_round
 from ..service import LookupError
 
 
+def lookup_action(record):
+    """Button → consent dialog → tick the box → lookup (the only path to the API)."""
+    consent = record.env["si5.lookup.consent"].browse(
+        record.action_si5_lookup()["res_id"]
+    )
+    consent.consent = True
+    return consent.action_lookup()
+
+
 @tagged("post_install", "-at_install")
 class TestLookup(TransactionCase):
     def setUp(self):
@@ -35,8 +44,57 @@ class TestLookup(TransactionCase):
             "cest_codigo": "",
         }
         with patch("odoo.addons.product_si5_gtin.models.lookup", return_value=data):
-            action = product.action_si5_lookup()
+            consent = product.env["si5.lookup.consent"].browse(
+                product.action_si5_lookup()["res_id"]
+            )
+            consent.consent = True
+            action = consent.action_lookup()
         return product.env["si5.lookup"].browse(action["res_id"])
+
+    def test_consent_before_any_request(self):
+        data = {"produto": "Proposed", "marca": "", "imagem_url": "", "ncm": "", "cest_codigo": ""}
+        with patch(
+            "odoo.addons.product_si5_gtin.models.lookup", return_value=data
+        ) as api:
+            action = self.product.action_si5_lookup()
+            # The button only opens the consent dialog: nothing is sent.
+            self.assertEqual(action["res_model"], "si5.lookup.consent")
+            api.assert_not_called()
+            consent = self.env["si5.lookup.consent"].browse(action["res_id"])
+            self.assertFalse(consent.consent, "Consent must start unticked")
+            self.assertEqual(consent.code, self.product.barcode)
+            # Without the box ticked the lookup is refused and nothing is sent.
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            api.assert_not_called()
+            consent.consent = True
+            review = consent.action_lookup()
+            api.assert_called_once()
+            self.assertEqual(api.call_args.args[0], self.product.barcode)
+            self.assertEqual(review["res_model"], "si5.lookup")
+
+    def test_consent_target_is_server_owned(self):
+        other = self.env["product.product"].create(
+            {"name": "Other", "barcode": "036000291452"}
+        )
+        consent = self.env["si5.lookup.consent"].browse(
+            self.product.action_si5_lookup()["res_id"]
+        )
+        with self.assertRaises(AccessError):
+            consent.write({"product_id": other.id})
+        with self.assertRaises(AccessError):
+            consent.write({"code": other.barcode})
+
+    def test_consent_barcode_changed(self):
+        consent = self.env["si5.lookup.consent"].browse(
+            self.product.action_si5_lookup()["res_id"]
+        )
+        consent.consent = True
+        self.product.barcode = "036000291452"
+        with patch("odoo.addons.product_si5_gtin.models.lookup") as api:
+            with self.assertRaises(UserError):
+                consent.action_lookup()
+            api.assert_not_called()
 
     def test_preserve_and_select(self):
         wizard = self.preview()
@@ -107,7 +165,7 @@ class TestLookup(TransactionCase):
             with patch(
                 "odoo.addons.product_si5_gtin.models.lookup", return_value=data
             ) as fake:
-                product.action_si5_lookup()
+                lookup_action(product)
                 fake.assert_called_once_with("7891000325858", "FAKE_COMPANY_TOKEN")
 
     def test_invalid_image_preview(self):
@@ -326,7 +384,7 @@ class TestLookup(TransactionCase):
             "cest_codigo": "",
         }
         with patch("odoo.addons.product_si5_gtin.models.lookup", return_value=data):
-            action = self.product.product_tmpl_id.action_si5_lookup()
+            action = lookup_action(self.product.product_tmpl_id)
         self.assertEqual(
             self.env["si5.lookup"].browse(action["res_id"]).product_id, self.product
         )
@@ -378,7 +436,7 @@ class TestLookup(TransactionCase):
                 "odoo.addons.product_si5_gtin.models.lookup", side_effect=reject_missing
             ):
                 with self.assertRaises(UserError):
-                    self.product.with_company(company).action_si5_lookup()
+                    lookup_action(self.product.with_company(company))
 
     def test_portuguese_error_translation(self):
         self.env["res.lang"]._activate_lang("pt_BR")
@@ -458,7 +516,7 @@ class TestLookup(TransactionCase):
             "odoo.addons.product_si5_gtin.models.lookup", side_effect=fake_lookup
         ):
             with self.assertRaisesRegex(UserError, "response contract") as error:
-                self.product.action_si5_lookup()
+                lookup_action(self.product)
         self.assertNotIn("RecursionError", str(error.exception))
         self.assertNotIn("extra", str(error.exception))
 
@@ -472,7 +530,7 @@ class TestLookup(TransactionCase):
             "peso": 415.0,
         }
         with patch("odoo.addons.product_si5_gtin.models.lookup", return_value=data):
-            action = self.product.action_si5_lookup()
+            action = lookup_action(self.product)
         wizard = self.env["si5.lookup"].browse(action["res_id"])
         # Stored with the database "Stock Weight" precision (2 decimals by default).
         digits = self.env["decimal.precision"].precision_get("Stock Weight")
@@ -500,13 +558,13 @@ class TestLookup(TransactionCase):
             with patch(
                 "odoo.addons.product_si5_gtin.models.lookup", return_value=data
             ) as fake:
-                self.product.action_si5_lookup()
+                lookup_action(self.product)
                 fake.assert_called_once_with("7891000325858", "FAKE_SETTINGS_TOKEN")
         with patch.dict("os.environ", {key: "FAKE_ENV_TOKEN"}, clear=True):
             with patch(
                 "odoo.addons.product_si5_gtin.models.lookup", return_value=data
             ) as fake:
-                self.product.action_si5_lookup()
+                lookup_action(self.product)
                 fake.assert_called_once_with("7891000325858", "FAKE_ENV_TOKEN")
 
     def test_token_setting_hidden_from_non_admin(self):

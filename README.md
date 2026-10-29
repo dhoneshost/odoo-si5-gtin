@@ -7,16 +7,18 @@ anything is written.
 
 | Addon | What it does |
 |---|---|
-| [`product_si5_gtin`](product_si5_gtin) | Button **Look up GTIN with SI5** on the product form. Opens a review with the suggested name, internal note (brand, category), gross weight and image. Nothing is selected by default; each field is applied only when ticked. |
-| [`product_si5_gtin_l10n_br_fiscal`](product_si5_gtin_l10n_br_fiscal) | Bridge with the OCA Brazilian fiscal engine ([`l10n_br_fiscal`](https://github.com/OCA/l10n-brazil/tree/18.0/l10n_br_fiscal)). Also offers the NCM and CEST records found in the fiscal tables, applied to the product template only after review. Installed automatically when both addons are present. |
+| [`product_si5_gtin`](product_si5_gtin) — *Product GTIN Lookup* | Button **Look up GTIN with SI5** on the product form. Asks for explicit consent, then opens a review with the suggested name, internal note (brand, category), gross weight and image. Nothing is selected by default; each field is applied only when ticked. |
+| [`product_si5_gtin_l10n_br_fiscal`](product_si5_gtin_l10n_br_fiscal) — *GTIN Brazilian Fiscal* | Bridge with the OCA Brazilian fiscal engine ([`l10n_br_fiscal`](https://github.com/OCA/l10n-brazil/tree/18.0/l10n_br_fiscal)). Also offers the NCM and CEST records found in the fiscal tables, applied to the product template only after review. Installed automatically when both addons are present. |
 
 ## Design
 
 Inspired by the review-then-confirm workflow of OCA
 [`l10n_br_cnpj_search`](https://github.com/OCA/l10n-brazil/tree/16.0/l10n_br_cnpj_search):
 
-- **Explicit only** — the API is called when the user clicks the button; never on
-  onchange, import, cron or bulk.
+- **Explicit consent** — the button opens a dialog that lists what will be sent
+  (barcode, company API token, module User-Agent) with an unticked consent box;
+  the API is called only after the user ticks it and clicks *Look up*. Cancel,
+  close or Esc send nothing. Never on onchange, import, cron or bulk.
 - **Review first** — current and suggested values side by side; every replacement
   checkbox starts unchecked. Fields shared by variants/companies (name,
   description, NCM, CEST) need an extra confirmation. Weight and image are written
@@ -25,7 +27,9 @@ Inspired by the review-then-confirm workflow of OCA
   checks, user-confirmed download, and the reviewed bytes are the ones applied
   (no second download).
 - **Fiscal data is a suggestion** — NCM/CEST are only offered when the exact code
-  exists in the `l10n_br_fiscal` tables and the CEST belongs to the NCM. Fiscal
+  exists in the `l10n_br_fiscal` tables; a CEST linked to another NCM is not
+  offered, and one the tables cannot check (no NCM link, or no product NCM) is
+  marked as not verified. Only `ncm_id`/`cest_id` are written. Fiscal
   classification remains the responsibility of the company and its accountant.
 - **Credentials** — one token per company. Set it in *Settings › General
   Settings › SI5 Global* (administrators only, stored server-side and never sent

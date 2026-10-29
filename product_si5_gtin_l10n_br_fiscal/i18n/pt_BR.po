@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 18.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-28 00:17+0000\n"
+"POT-Creation-Date: 2026-10-29 00:01+0000\n"
 "PO-Revision-Date: 2026-10-28 00:17+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -44,6 +44,22 @@ msgstr ""
 "tabelas fiscais</span>"
 
 #. module: product_si5_gtin_l10n_br_fiscal
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin_l10n_br_fiscal.lookup_form_fiscal
+msgid ""
+"<span class=\"text-success\" invisible=\"cest_ncm_link != 'verified'\"><i class=\"fa fa-check\"/> The fiscal tables link this CEST to the NCM.</span>\n"
+"                        <span class=\"text-warning\" invisible=\"cest_ncm_link != 'not_linked'\"><i class=\"fa fa-exclamation-triangle\"/> Not verified: the fiscal tables do not link this CEST to any NCM. Check the pair with your accountant before applying it.</span>\n"
+"                        <span class=\"text-warning\" invisible=\"cest_ncm_link != 'no_ncm'\"><i class=\"fa fa-exclamation-triangle\"/> Not verified: the product has no NCM to check this CEST against.</span>"
+msgstr ""
+"<span class=\"text-success\" invisible=\"cest_ncm_link != 'verified'\"><i class=\"fa fa-check\"/> As tabelas fiscais vinculam este CEST ao NCM.</span>\n"
+"                        <span class=\"text-warning\" invisible=\"cest_ncm_link != 'not_linked'\"><i class=\"fa fa-exclamation-triangle\"/> Não verificado: as tabelas fiscais não vinculam este CEST a nenhum NCM. Confira o par com seu contador antes de aplicar.</span>\n"
+"                        <span class=\"text-warning\" invisible=\"cest_ncm_link != 'no_ncm'\"><i class=\"fa fa-exclamation-triangle\"/> Não verificado: o produto não tem NCM para conferir este CEST.</span>"
+
+#. module: product_si5_gtin_l10n_br_fiscal
+#: model:ir.model.fields,field_description:product_si5_gtin_l10n_br_fiscal.field_si5_lookup__cest_ncm_link
+msgid "CEST × NCM check"
+msgstr "Conferência CEST × NCM"
+
+#. module: product_si5_gtin_l10n_br_fiscal
 #: model:ir.model.fields,field_description:product_si5_gtin_l10n_br_fiscal.field_si5_lookup__current_cest_id
 msgid "Current CEST"
 msgstr "CEST atual"
@@ -52,6 +68,16 @@ msgstr "CEST atual"
 #: model:ir.model.fields,field_description:product_si5_gtin_l10n_br_fiscal.field_si5_lookup__current_ncm_id
 msgid "Current NCM"
 msgstr "NCM atual"
+
+#. module: product_si5_gtin_l10n_br_fiscal
+#: model:ir.model.fields.selection,name:product_si5_gtin_l10n_br_fiscal.selection__si5_lookup__cest_ncm_link__verified
+msgid "Linked to the NCM in the fiscal tables"
+msgstr "Vinculado ao NCM nas tabelas fiscais"
+
+#. module: product_si5_gtin_l10n_br_fiscal
+#: model:ir.model.fields.selection,name:product_si5_gtin_l10n_br_fiscal.selection__si5_lookup__cest_ncm_link__no_ncm
+msgid "No NCM to check this CEST against"
+msgstr "Sem NCM para conferir este CEST"
 
 #. module: product_si5_gtin_l10n_br_fiscal
 #: model:ir.model.fields,field_description:product_si5_gtin_l10n_br_fiscal.field_si5_lookup__apply_cest
@@ -79,6 +105,11 @@ msgid "Suggested NCM"
 msgstr "NCM sugerido"
 
 #. module: product_si5_gtin_l10n_br_fiscal
+#: model:ir.model.fields.selection,name:product_si5_gtin_l10n_br_fiscal.selection__si5_lookup__cest_ncm_link__not_linked
+msgid "The fiscal tables do not link this CEST to any NCM"
+msgstr "As tabelas fiscais não vinculam este CEST a nenhum NCM"
+
+#. module: product_si5_gtin_l10n_br_fiscal
 #. odoo-python
 #: code:addons/product_si5_gtin_l10n_br_fiscal/models.py:0
 msgid "This CEST was not found or does not match the product NCM."
@@ -88,4 +119,16 @@ msgstr "Este CEST não foi encontrado ou não corresponde ao NCM do produto."
 #. odoo-python
 #: code:addons/product_si5_gtin_l10n_br_fiscal/models.py:0
 msgid "This NCM was not found in the fiscal tables."
+msgstr "Este NCM não foi encontrado nas tabelas fiscais."
+
+#. module: product_si5_gtin_l10n_br_fiscal
+#: model_terms:ir.ui.view,arch_db:product_si5_gtin_l10n_br_fiscal.lookup_form_fiscal
+msgid ""
+"l10n_br_fiscal derives the Fiscal Product Genre (NCM chapter) and the Export"
+" UoM from the NCM. This module changes no other fiscal setting: fiscal type,"
+" ICMS origin, taxes and operations stay as they are."
 msgstr ""
+"O l10n_br_fiscal deriva do NCM o Gênero Fiscal do Produto (capítulo do NCM) "
+"e a UdM de exportação. Este módulo não muda nenhuma outra configuração "
+"fiscal: tipo fiscal, origem do ICMS, tributos e operações continuam como "
+"estão."

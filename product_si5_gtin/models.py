@@ -84,15 +84,26 @@ class ProductTemplate(models.Model):
 class ProductProduct(models.Model):
     _inherit = "product.product"
 
-    def action_si5_lookup(self):
+    def _si5_check_lookup_access(self):
         self.ensure_one()
         self.check_access("write")
         self.env["si5.lookup"].check_access("create")
-        company = self.env.company
-        if self.company_id and self.company_id != company:
+        if self.company_id and self.company_id != self.env.company:
             raise AccessError(self.env._("Select the product company first."))
+
+    def action_si5_lookup(self):
+        """Open the consent dialog. Nothing is sent to SI5 Global here."""
+        self._si5_check_lookup_access()
+        consent = self.env["si5.lookup.consent"].create(
+            {"product_id": self.id, "code": self.barcode}
+        )
+        return consent._window_action()
+
+    def _si5_lookup_preview(self):
+        """Query SI5 Global and open the review. Only called after explicit consent."""
+        self._si5_check_lookup_access()
         try:
-            data = lookup(self.barcode, company._si5_token())
+            data = lookup(self.barcode, self.env.company._si5_token())
         except LookupError as error:
             raise UserError(
                 self.env["si5.lookup"]._service_message(error.code)
@@ -100,6 +111,64 @@ class ProductProduct(models.Model):
         # Only the private factory can populate server-owned target/source fields.
         wizard = self.env["si5.lookup"]._create_preview(self, data)
         return wizard._window_action()
+
+
+class Si5LookupConsent(models.TransientModel):
+    _name = "si5.lookup.consent"
+    _description = "SI5 lookup consent"
+    _check_company_auto = True
+
+    product_id = fields.Many2one(
+        "product.product",
+        required=True,
+        readonly=True,
+        check_company=True,
+        ondelete="cascade",
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        required=True,
+        readonly=True,
+        default=lambda self: self.env.company,
+    )
+    code = fields.Char(string="Barcode to send", readonly=True)
+    consent = fields.Boolean(
+        string="I agree to send this barcode to SI5 Global",
+        default=False,
+    )
+
+    def write(self, vals):
+        # Only the consent box is the user's to change.
+        if set(vals) - {"consent"}:
+            raise AccessError(self.env._("The product and barcode cannot be changed."))
+        return super().write(vals)
+
+    def _window_action(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": self.env._("Look up GTIN with SI5 Global"),
+            "res_model": self._name,
+            "res_id": self.id,
+            "view_mode": "form",
+            "target": "new",
+        }
+
+    def action_lookup(self):
+        self.ensure_one()
+        if self.create_uid != self.env.user or self.company_id != self.env.company:
+            raise AccessError(
+                self.env._("This request belongs to another user or company.")
+            )
+        if not self.consent:
+            raise UserError(
+                self.env._(
+                    "Tick the consent box to send the barcode to SI5 Global, "
+                    "or cancel to send nothing."
+                )
+            )
+        if self.product_id.barcode != self.code:
+            raise UserError(self.env._("The barcode changed. Start the lookup again."))
+        return self.product_id._si5_lookup_preview()
 
 
 class Si5Lookup(models.TransientModel):

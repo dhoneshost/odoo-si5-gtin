@@ -53,7 +53,11 @@ class TestFiscalBridge(TransactionCase):
             "peso": None,
         }
         with patch("odoo.addons.product_si5_gtin.models.lookup", return_value=data):
-            action = self.product.action_si5_lookup()
+            consent = self.env["si5.lookup.consent"].browse(
+                self.product.action_si5_lookup()["res_id"]
+            )
+            consent.consent = True
+            action = consent.action_lookup()
         return self.env["si5.lookup"].browse(action["res_id"])
 
     def test_nothing_applied_by_default(self):
@@ -67,6 +71,7 @@ class TestFiscalBridge(TransactionCase):
         wizard = self.preview()
         wizard.write({"apply_ncm": True, "apply_cest": True})
         self.assertEqual(wizard.proposed_cest_id, self.cest)
+        self.assertEqual(wizard.cest_ncm_link, "verified")
         with self.assertRaises(UserError):
             wizard.action_apply()
         wizard.confirm_shared = True
@@ -95,6 +100,34 @@ class TestFiscalBridge(TransactionCase):
         wizard = self.preview(cest="9999902")
         wizard.apply_ncm = True
         self.assertEqual(wizard.proposed_cest_id, unlinked)
+        # Offered for review, but never presented as compatible with the NCM.
+        self.assertEqual(wizard.cest_ncm_link, "not_linked")
+
+    def test_cest_unverified_without_product_ncm(self):
+        self.product.product_tmpl_id.ncm_id = False
+        wizard = self.preview()
+        # Not applying the NCM and the product has none: nothing to check against.
+        self.assertEqual(wizard.proposed_cest_id, self.cest)
+        self.assertEqual(wizard.cest_ncm_link, "no_ncm")
+        wizard.apply_ncm = True
+        self.assertEqual(wizard.cest_ncm_link, "verified")
+
+    def test_other_fiscal_settings_untouched(self):
+        template = self.product.product_tmpl_id
+        fields_kept = [
+            "fiscal_type",
+            "icms_origin",
+            "tax_icms_or_issqn",
+            "ipi_guideline_class_id",
+            "service_type_id",
+        ]
+        before = {name: template[name] for name in fields_kept}
+        wizard = self.preview()
+        wizard.write({"apply_ncm": True, "apply_cest": True, "confirm_shared": True})
+        wizard.action_apply()
+        self.assertEqual(template.ncm_id, self.ncm)
+        for name in fields_kept:
+            self.assertEqual(template[name], before[name], name)
 
     def test_plain_ncm_preferred_over_ex_variant(self):
         self.env["l10n_br_fiscal.ncm"].create(
