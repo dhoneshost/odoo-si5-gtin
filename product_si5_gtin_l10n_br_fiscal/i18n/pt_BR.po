@@ -132,3 +132,13 @@ msgstr ""
 "e a UdM de exportação. Este módulo não muda nenhuma outra configuração "
 "fiscal: tipo fiscal, origem do ICMS, tributos e operações continuam como "
 "estão."
+
+#. module: product_si5_gtin_l10n_br_fiscal
+#. odoo-python
+#: code:addons/product_si5_gtin_l10n_br_fiscal/models.py:0
+msgid ""
+"The existing CEST does not match the selected NCM. Review both fiscal codes "
+"before applying; no data was changed."
+msgstr ""
+"O CEST existente não corresponde ao NCM selecionado. Revise os dois códigos "
+"fiscais antes de aplicar; nenhum dado foi alterado."

@@ -121,3 +121,11 @@ msgid ""
 " UoM from the NCM. This module changes no other fiscal setting: fiscal type,"
 " ICMS origin, taxes and operations stay as they are."
 msgstr ""
+
+#. module: product_si5_gtin_l10n_br_fiscal
+#. odoo-python
+#: code:addons/product_si5_gtin_l10n_br_fiscal/models.py:0
+msgid ""
+"The existing CEST does not match the selected NCM. Review both fiscal codes "
+"before applying; no data was changed."
+msgstr ""

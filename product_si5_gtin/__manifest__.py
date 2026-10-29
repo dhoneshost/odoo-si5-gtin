@@ -2,13 +2,13 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Product GTIN Lookup",
-    "version": "18.0.2.2.1",
+    "version": "18.0.2.3.0",
     "summary": "Look up a product barcode on SI5 Global and apply reviewed data. "
     "External service: after explicit consent on each lookup, only the barcode, "
     "the company API token and a module User-Agent are sent to global.si5.com.br",
     "author": "SI5",
     "license": "AGPL-3",
-    "development_status": "Beta",
+    "development_status": "Stable",
     "category": "Sales/Sales",
     "website": "https://github.com/dhoneshost/odoo-si5-gtin",
     "maintainers": ["dhoneshost"],

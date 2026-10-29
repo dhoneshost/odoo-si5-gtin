@@ -135,3 +135,89 @@ class TestFiscalBridge(TransactionCase):
         )
         wizard = self.preview()
         self.assertEqual(wizard.proposed_ncm_id, self.ncm)
+
+    def test_ex_only_ncm_is_not_guessed(self):
+        for exception in ("01", "02"):
+            self.env["l10n_br_fiscal.ncm"].create(
+                {
+                    "code": "9999.99.03",
+                    "exception": exception,
+                    "name": "SI5 ambiguous Ex fixture",
+                }
+            )
+        wizard = self.preview(ncm="99999903", cest="")
+        self.assertFalse(wizard.proposed_ncm_id)
+        before = self.product.ncm_id
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        with self.assertRaises(UserError):
+            wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, before)
+
+    def test_changed_ncm_requires_new_review(self):
+        wizard = self.preview()
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        self.product.product_tmpl_id.ncm_id = self.other_ncm
+        with self.assertRaisesRegex(UserError, "product changed"):
+            wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, self.other_ncm)
+        self.assertEqual(wizard.state, "draft")
+
+    def test_changed_cest_requires_new_review(self):
+        wizard = self.preview()
+        wizard.write({"apply_ncm": True, "apply_cest": True, "confirm_shared": True})
+        self.product.product_tmpl_id.cest_id = self.cest
+        with self.assertRaisesRegex(UserError, "product changed"):
+            wizard.action_apply()
+        self.assertEqual(self.product.cest_id, self.cest)
+        self.assertEqual(wizard.state, "draft")
+
+    def test_ncm_only_rejects_incompatible_retained_cest(self):
+        self.product.product_tmpl_id.write(
+            {"ncm_id": self.ncm.id, "cest_id": self.cest.id}
+        )
+        wizard = self.preview(ncm="99999902", cest="")
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        with self.assertRaisesRegex(UserError, "existing CEST"):
+            wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, self.ncm)
+        self.assertEqual(self.product.cest_id, self.cest)
+        self.assertEqual(wizard.state, "draft")
+
+    def test_ncm_only_preserves_compatible_retained_cest(self):
+        self.product.product_tmpl_id.write(
+            {"ncm_id": self.ncm.id, "cest_id": self.cest.id}
+        )
+        wizard = self.preview(cest="")
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, self.ncm)
+        self.assertEqual(self.product.cest_id, self.cest)
+
+    def test_ncm_only_without_retained_cest(self):
+        self.product.product_tmpl_id.cest_id = False
+        wizard = self.preview(cest="")
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, self.ncm)
+        self.assertFalse(self.product.cest_id)
+
+    def test_ncm_only_does_not_clear_unlinked_retained_cest(self):
+        self.cest.ncm_ids = False
+        self.product.product_tmpl_id.cest_id = self.cest
+        wizard = self.preview(cest="")
+        wizard.write({"apply_ncm": True, "confirm_shared": True})
+        wizard.action_apply()
+        self.assertEqual(self.product.ncm_id, self.ncm)
+        self.assertEqual(self.product.cest_id, self.cest)
+
+    def test_legacy_review_without_fiscal_snapshot_is_rejected(self):
+        wizard = self.preview()
+        # Simulate a pre-upgrade review: it contains only the base hash.
+        wizard.sudo().write(
+            {"source_fingerprint": wizard.source_fingerprint.split(":", 1)[0]}
+        )
+        before = (self.product.ncm_id, self.product.cest_id)
+        wizard.write({"apply_ncm": True, "apply_cest": True, "confirm_shared": True})
+        with self.assertRaisesRegex(UserError, "product changed"):
+            wizard.action_apply()
+        self.assertEqual((self.product.ncm_id, self.product.cest_id), before)

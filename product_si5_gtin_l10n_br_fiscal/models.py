@@ -35,6 +35,14 @@ class Si5Lookup(models.TransientModel):
     apply_ncm = fields.Boolean(string="Replace NCM", default=False)
     apply_cest = fields.Boolean(string="Replace CEST", default=False)
 
+    @api.model
+    def _source_fingerprint(self, product):
+        template = product.product_tmpl_id
+        # Re-read the fiscal targets on the final pre-write check as well.
+        template.invalidate_recordset(["ncm_id", "cest_id"])
+        base = super()._source_fingerprint(product)
+        return f"{base}:{template.ncm_id.id or 0}:{template.cest_id.id or 0}"
+
     @api.depends("ncm_code", "cest_code", "apply_ncm", "current_ncm_id")
     def _compute_proposed_fiscal(self):
         Ncm = self.env["l10n_br_fiscal.ncm"]
@@ -44,9 +52,9 @@ class Si5Lookup(models.TransientModel):
             # Exact 8-digit match only; never guess a "closest" classification.
             ncm = Ncm
             if len(code) == 8 and code.isdigit():
-                # The table also holds "Ex" variants of a code; prefer the plain one.
+                # The API supplies no Ex identifier: never guess an exception.
                 candidates = Ncm.search([("code_unmasked", "=", code)])
-                ncm = candidates.filtered(lambda n: not n.exception)[:1] or candidates[:1]
+                ncm = candidates.filtered(lambda n: not n.exception)[:1]
             review.proposed_ncm_id = ncm
             cest_code = (review.cest_code or "").strip()
             cest = (
@@ -90,6 +98,18 @@ class Si5Lookup(models.TransientModel):
             if not self.proposed_ncm_id:
                 raise UserError(
                     self.env._("This NCM was not found in the fiscal tables.")
+                )
+            retained_cest = product.product_tmpl_id.cest_id
+            if (
+                not self.apply_cest
+                and retained_cest.ncm_ids
+                and self.proposed_ncm_id not in retained_cest.ncm_ids
+            ):
+                raise UserError(
+                    self.env._(
+                        "The existing CEST does not match the selected NCM. "
+                        "Review both fiscal codes before applying; no data was changed."
+                    )
                 )
             values["ncm_id"] = self.proposed_ncm_id.id
         if self.apply_cest:

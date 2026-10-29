@@ -1,4 +1,9 @@
-# Release QA and promotion gates
+# Historical release QA and promotion gates
+
+This records the pre-release assessment at `591ef38`. The current acceptance
+decision and additional fiscal contract validation are in
+[release-18.0.md](release-18.0.md). Previous unmet production-observation gates
+are historical, not claims of subsequently completed production testing.
 
 ## Scope and maturity
 

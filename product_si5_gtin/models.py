@@ -325,6 +325,11 @@ class Si5Lookup(models.TransientModel):
         return kilogram._compute_quantity(grams / 1000.0, target, round=False)
 
     @api.model
+    def _source_fingerprint(self, product):
+        """Snapshot reviewed fields; bridges extend with their own targets."""
+        return _fingerprint(product)
+
+    @api.model
     def _preview_values(self, product, data):
         """Values for a new review; extend to stage more suggestions."""
         reference = self.env._(
@@ -337,7 +342,7 @@ class Si5Lookup(models.TransientModel):
             "product_id": product.id,
             "company_id": self.env.company.id,
             "code": product.barcode,
-            "source_fingerprint": _fingerprint(product),
+            "source_fingerprint": self._source_fingerprint(product),
             "proposed_name": data["produto"],
             # Odoo 18 shows "description" as internal notes: keep useful facts,
             # not a copy of the name.
@@ -396,7 +401,7 @@ class Si5Lookup(models.TransientModel):
             raise AccessError(self.env._("Select the product company first."))
         if product.barcode != self.code:
             raise UserError(self.env._("The GTIN changed. Run the lookup again."))
-        if _fingerprint(product) != self.source_fingerprint:
+        if self._source_fingerprint(product) != self.source_fingerprint:
             raise UserError(
                 self.env._(
                     "The product changed after this lookup. Review it again before replacing data."

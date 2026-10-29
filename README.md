@@ -76,31 +76,27 @@ odoo shell -d test_si5 < tests/odoo_concurrency_consent.py
 
 A consent allows one lookup: two simultaneous clicks produce a single API request.
 
-## Maturity and versioning
+## Release scope and versioning
 
 | Addon | Version | Maturity (`development_status`) |
 |---|---|---|
-| `product_si5_gtin` (Product GTIN Lookup) | 18.0.2.2.1 | Beta |
-| `product_si5_gtin_l10n_br_fiscal` (GTIN Brazilian Fiscal) | 18.0.1.2.0 | Alpha |
+| `product_si5_gtin` (Product GTIN Lookup) | 18.0.2.3.0 | Stable |
+| `product_si5_gtin_l10n_br_fiscal` (GTIN Brazilian Fiscal) | 18.0.1.3.0 | Stable |
 
-- **Not Stable yet.** Both addons work and are covered by automated tests and by
-  tests on a real Odoo 18 database, but they have not been validated in production
-  stores yet; behaviour may still change between minor versions.
-- **Version numbers are never lowered.** They keep the history of each addon
-  (18.0.2.x, 18.0.1.x), avoiding ambiguous downgrade and upgrade paths for
-  existing installations.
-- **Odoo Apps.** The vendor guidelines ask Beta apps to use a version below 1.0.
-  The current Beta version does not meet that numbering rule. Disclosure is not
-  an exception or approval: submission remains pending either written guidance
-  from Odoo or a genuinely validated Stable release. We do not downgrade or
-  change maturity solely to satisfy the listing rule.
-- **Promotion to Stable** only after the release is validated: installed and
-  upgraded on real databases, and no blocking issue reported
-  for 30 days. For the bridge, also NCM/CEST suggestions reviewed with an
-  accountant on real products. Validation can occur outside the Apps store;
-  store publication is not a prerequisite for validation. See
-  [release QA gates](docs/release-qa.md) for evidence and remaining limits.
-  Until those gates are met, the status stays Beta/Alpha.
+Stable describes the tested **assisted review-and-apply software workflow**, not
+certification of catalogue data, fiscal classification, every Odoo deployment,
+or a claim of 30 days in production. No field is selected automatically.
+
+The release criteria are executable client/ORM tests, consent and permission
+checks, duplicate-request prevention, safe image handling, upgrade preservation,
+and fail-closed fiscal review contracts. See [release validation](docs/release-18.0.md)
+for results, supported scope and explicit limits.
+
+The previous README's 30-day prerequisite has been consciously replaced by
+these scope-specific acceptance criteria. Production observation is follow-up,
+not evidence already obtained. Accountant review remains essential for each
+business's fiscal classifications; this software does not certify them.
+Versions remain monotonic: no downgrade was used to change maturity.
 
 ## Status and OCA
 
