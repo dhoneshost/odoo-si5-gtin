@@ -32,8 +32,10 @@ Inspired by the review-then-confirm workflow of OCA
   marked as not verified. Only `ncm_id`/`cest_id` are written. Fiscal
   classification remains the responsibility of the company and its accountant.
 - **Credentials** — one token per company. Set it in *Settings › General
-  Settings › SI5 Global* (administrators only, stored server-side and never sent
-  back to the browser), or in the server environment variable
+  Settings › SI5 Global* (administrators only; masked in the settings form).
+  Administrators can read the stored value: masking is not encryption and does
+  not prevent authorized reads or exports. Alternatively, use the server
+  environment variable
   `SI5_TOKEN_COMPANY_<company id>`, which takes precedence. No fallback between
   companies.
 - **Network hardening** — fixed hosts, public IPs only, TLS verified, 8 s socket
@@ -85,15 +87,20 @@ A consent allows one lookup: two simultaneous clicks produce a single API reques
   tests on a real Odoo 18 database, but they have not been validated in production
   stores yet; behaviour may still change between minor versions.
 - **Version numbers are never lowered.** They keep the history of each addon
-  (18.0.2.x, 18.0.1.x). Going back to 0.x would stop existing databases from
-  receiving updates, because Odoo only upgrades to a higher version.
+  (18.0.2.x, 18.0.1.x), avoiding ambiguous downgrade and upgrade paths for
+  existing installations.
 - **Odoo Apps.** The vendor guidelines ask Beta apps to use a version below 1.0.
-  We do not renumber to meet that rule; instead the manifests and the store pages
-  state the maturity explicitly, so buyers know the addon is experimental.
-- **Promotion to Stable** only after the release is validated: published on Odoo
-  Apps, installed and upgraded on real databases, and no blocking issue reported
+  The current Beta version does not meet that numbering rule. Disclosure is not
+  an exception or approval: submission remains pending either written guidance
+  from Odoo or a genuinely validated Stable release. We do not downgrade or
+  change maturity solely to satisfy the listing rule.
+- **Promotion to Stable** only after the release is validated: installed and
+  upgraded on real databases, and no blocking issue reported
   for 30 days. For the bridge, also NCM/CEST suggestions reviewed with an
-  accountant on real products. Until then the status stays Beta/Alpha.
+  accountant on real products. Validation can occur outside the Apps store;
+  store publication is not a prerequisite for validation. See
+  [release QA gates](docs/release-qa.md) for evidence and remaining limits.
+  Until those gates are met, the status stays Beta/Alpha.
 
 ## Status and OCA
 

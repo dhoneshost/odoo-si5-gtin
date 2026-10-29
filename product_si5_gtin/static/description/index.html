@@ -126,7 +126,7 @@
                 <div class="col-md-6">
                     <ul style="font-size:15px;color:#2d3748;padding-left:20px;margin:0;">
                         <li><b>Not sent:</b> product name, prices, stock, customers, partners, invoices, users or any other Odoo data.</li>
-                        <li>The token is stored on the company (administrators only) or in the server environment, and is never shown in the browser, exports or error messages.</li>
+                        <li>The company token is restricted to administrators and masked in the settings form. Administrators can read or export the stored value; masking is not encryption. A server environment variable can be used instead. Lookup error messages do not include the token.</li>
                         <li>Like any API, SI5 Global receives the request itself (barcode, time and the Odoo server IP address) to count the quota.</li>
                     </ul>
                 </div>

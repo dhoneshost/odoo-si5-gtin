@@ -38,7 +38,7 @@ def _fingerprint(product):
 class ResCompany(models.Model):
     _inherit = "res.company"
 
-    # Only administrators can read or write it; never shown back in clear text.
+    # Only administrators can read or write it; settings mask the displayed value.
     si5_token = fields.Char(
         string="SI5 Global API token",
         groups="base.group_system",
